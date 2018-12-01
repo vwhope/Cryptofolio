@@ -31,7 +31,9 @@
         datasets: [
           {
             label: "Seven Day Performance",
-            data: chartData
+            data: chartData,
+            borderColor: "#3cba9f"
+            //fill: false
           }
         ]
       }
