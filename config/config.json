@@ -4,10 +4,7 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "",
-    "database": "testdb",
-    "host": "localhost",
+    "use_env_variable": "DATABASE_URL",
     "dialect": "mysql",
     "logging": false
   },

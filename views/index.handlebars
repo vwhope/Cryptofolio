@@ -1,69 +1,70 @@
-      <!-- top navigation -->
-      <nav class="navbar navbar-dark bg-primary">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#" id="brand-logo">Cryptofolio</a>
-        </div>
-      </nav>
+<!-- top navigation -->
+<nav class="navbar navbar-dark bg-primary">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#" id="brand-logo">Cryptofolio</a>
+  </div>
+</nav>
 
-      <!-- below top navigation -->
-      <div class="container-fluid">
-        <div class="row">
+<!-- below top navigation -->
+<div class="container-fluid">
+  <div class="row">
 
-          <!-- left navigation -->
-          <div class="col-2" id="left-nav">
-            <a href="#" class="list-group-item list-group-item-action active"><i class="fas fa-chart-line"></i>Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-balance-scale"></i>Buy/Sell</a>
-            <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Accounts</a>
-            <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-toolbox"></i>Tools</a>
-            <a href="#" class="list-group-item list-group-item-action disabled"><i class="fas fa-cogs"></i>Settings</a>
+    <!-- left navigation -->
+    <div class="col-2" id="left-nav">
+      <a href="#" class="list-group-item list-group-item-action active"><i class="fas fa-chart-line"></i>Dashboard</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-balance-scale"></i>Buy/Sell</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Accounts</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-toolbox"></i>Tools</a>
+      <a href="#" class="list-group-item list-group-item-action disabled"><i class="fas fa-cogs"></i>Settings</a>
+    </div>
+
+    <!-- main content area -->
+    <div class="col-10" id="main-content-area">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header text-primary">
+              Price Chart
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">BTC ETH LTC</li>
+            </ul>
+            <canvas id="seven-day-performance" width="400" height="300"></canvas>
           </div>
-
-          <!-- main content area -->
-          <div class="col-10" id="main-content-area">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <div class="card-header text-primary">
-                    Price Chart
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">BTC ETH LTC</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-6">
-               <div class="card">
-                  <div class="card-header text-primary">
-                    Portfolio
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">BitCoin BTC 9000</li>
-                  </ul>
-                </div> 
-              </div> 
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header text-primary">
+              Portfolio
             </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <div class="card-header text-primary">
-                    Recent Transactions
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Nov. 29, 2018  Added 5 BTC at $4000.99</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-sm-6">
-               <div class="card">
-                  <div class="card-header text-primary">
-                    Latest News
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">BTC is taking over the world!</li>
-                  </ul>
-                </div> 
-              </div> 
-            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">BitCoin BTC 9000</li>
+            </ul>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header text-primary">
+              Recent Transactions
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Nov. 29, 2018 Added 5 BTC at $4000.99</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-header text-primary">
+              Latest News
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">BTC is taking over the world!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
