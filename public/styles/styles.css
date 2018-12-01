@@ -1,0 +1,23 @@
+#left-nav {
+  min-height: 100vh;
+  border-right: solid 1px lightgrey;
+}
+
+#left-nav a {
+  list-style-type: none;
+  margin-top: 2vh;
+}
+#bootstrap-overrides .list-group-item .fas {
+  margin-right: 10px;
+}
+
+#bootstrap-overrides #main-content-area .row {
+  margin-top: 2vh;
+  min-height: 40vh;
+}
+
+#bootstrap-overrides #main-content-area .card {
+  margin-top: 2vh;
+  min-height: 100%;
+  margin: 0 auto;
+}
