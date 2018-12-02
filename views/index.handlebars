@@ -55,12 +55,17 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card">
+          <div class="card" id="news-feed">
             <div class="card-header text-primary">
               Latest News
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">BTC is taking over the world!</li>
+              {{#each newsFeed}}
+                <li class="list-group-item">
+                  <img src="{{imageUrl}}"></img>
+                  <a href="{{link}}">{{title}}</a>
+                </li>
+              {{/each}}
             </ul>
           </div>
         </div>
