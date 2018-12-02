@@ -21,3 +21,13 @@
   min-height: 100%;
   margin: 0 auto;
 }
+
+#news-feed ul {
+  max-height: 45vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#news-feed img {
+  width: 50px;
+}

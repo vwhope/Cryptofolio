@@ -16,8 +16,37 @@ function getCoinData(coinName, callback) {
   });
 }
 
+function getNewsData(callback) {
+  var url = "https://min-api.cryptocompare.com/data/v2/news/?lang=EN";
+  request.get(url, function(error, body) {
+    if (error) {
+      console.log(error);
+    }
+    var newsFeed = JSON.parse(body.body);
+    var newsFeedData = newsFeed.Data;
+    callback(newsFeedData);
+  });
+}
+
+function parseNewsData(newsData) {
+  var feedArray = [];
+  for (var id in newsData) {
+    if (newsData.hasOwnProperty(id)) {
+      var feed = {
+        title: newsData[id].title,
+        imageUrl: newsData[id].imageurl,
+        link: newsData[id].url
+      };
+      feedArray.push(feed);
+    }
+  }
+  return feedArray;
+}
+
 var utils = {
-  getCoinData: getCoinData
+  getCoinData: getCoinData,
+  getNewsData: getNewsData,
+  parseNewsData: parseNewsData
 };
 
 module.exports = utils;
