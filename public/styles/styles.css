@@ -31,3 +31,7 @@
 #news-feed img {
   width: 50px;
 }
+
+#coin-buttons button {
+  margin: 13px 5px 5px 5px;
+}
