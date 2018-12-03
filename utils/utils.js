@@ -3,7 +3,7 @@ var request = require("request");
 function getCoinData(coinName, callback) {
   var url = "https://min-api.cryptocompare.com/data/histoday?fsym=";
   url += coinName;
-  url += "&tsym=USD&limit=7";
+  url += "&tsym=USD&limit=6";
   url += "&api_key=";
   url += process.env.CRYPTOCOMPAREKEY;
   request.get(url, function(error, body) {
