@@ -7,20 +7,25 @@
 
 function coinButtonHandler() {
   var coin = $(this).data("button");
-  console.log($(this));
   $("#seven-day-performance").empty();
   getSevenDayCoinPerformance(coin);
 }
 
 function getSevenDayCoinPerformance(coin) {
   $.get("/api/" + coin, function(data) {
-    var chartData = [];
+    var ChartData = {
+      closingPoints: [],
+      day: []
+    };
     for (var close in data) {
       if (data.hasOwnProperty(close)) {
-        chartData.push(data[close].close);
+        ChartData.closingPoints.push(data[close].close);
+        console.log(data[close].close);
+        ChartData.day.push(moment(data[close].time * 1000).format("dddd"));
+        console.log(moment(data[close].time * 1000).format("dddd"));
       }
     }
-    renderLineChart(chartData);
+    renderLineChart(ChartData);
   });
 }
 
@@ -31,20 +36,13 @@ function renderLineChart(chartData) {
   new Chart(sdpChartElem, {
     type: "line",
     data: {
-      labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Friday",
-        "Saturday"
-      ],
+      labels: chartData.day,
       datasets: [
         {
           label: "Seven Day Performance",
-          data: chartData,
-          borderColor: "#3cba9f"
-          //fill: false
+          data: chartData.closingPoints,
+          borderColor: "#3cba9f",
+          fill: false
         }
       ]
     }
