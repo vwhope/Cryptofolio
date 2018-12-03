@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   // 'Transaction' in orange after .define is the model name
   var Transaction = sequelize.define("Transaction", {
     // either buy or sell
-    transactionType: {
+    type: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     // number of currency (coins) bought or sold
     quantity: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false,
       defaultValue: 0
     },
