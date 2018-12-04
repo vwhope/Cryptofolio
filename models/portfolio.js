@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     holdings: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10, 5),
       allowNull: false,
       defaultValue: 0
     },
@@ -19,11 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false
     }
   });
-
-  Portfolio.associate = function(models) {
-    // A single Portfolio can have many Transactions
-    Portfolio.hasMany(models.Transaction);
-  };
 
   Portfolio.associate = function(models) {
     // A single Portfolio belongsTo a single User

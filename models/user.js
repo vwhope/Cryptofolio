@@ -4,15 +4,16 @@ module.exports = function(sequelize, DataTypes) {
   // attributes createdAt and updatedAt are automatically added
   // 'User' in orange after .define is the model name
   var User = sequelize.define("User", {
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false
     },
     lastName: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    userName: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -31,5 +32,9 @@ module.exports = function(sequelize, DataTypes) {
     User.hasOne(models.Portfolio);
   };
   //
+  User.associate = function(models) {
+    // A single User can have many Transactions
+    User.hasMany(models.Transaction);
+  };
   return User;
 };

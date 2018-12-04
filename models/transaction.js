@@ -16,13 +16,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     // number of currency (coins) bought or sold
     quantity: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10, 5),
       allowNull: false,
-      defaultValue: 0
+      defaultValue: 0.0
     },
     // the price at time of transaction
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10, 5),
       allowNull: false,
       defaultValue: 0.0
     },
@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Transaction.associate = function(models) {
     // Transaction belongs to Portfolio
-    Transaction.belongsTo(models.Portfolio, {
+    Transaction.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
