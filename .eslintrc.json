@@ -38,6 +38,6 @@
             "error",
             "always"
         ],
-        "prettier/prettier": "error"
+        "prettier/prettier": ["error"]
     }
 }

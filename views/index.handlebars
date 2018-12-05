@@ -41,9 +41,15 @@
             <div class="card-header text-primary">
               Portfolio
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">BitCoin BTC 9000</li>
-            </ul>
+            <div class="balance-container">
+              <h2>$</h2>
+              <p>Total Balance</p>
+            </div>
+            <div class="coins-owned">
+              {{#each portfolios}}
+                <li class="list-group-item">{{coin}} {{holdings}}</li>
+              {{/each}}
+            </div>
           </div>
         </div>
       </div>
@@ -54,7 +60,9 @@
               Recent Transactions
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Nov. 29, 2018 Added 5 BTC at $4000.99</li>
+              {{#each transactions}}
+                <li class="list-group-item">{{type}} {{currency}} {{quantity}}</li>
+              {{/each}}
             </ul>
           </div>
         </div>

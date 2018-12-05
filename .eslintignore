@@ -1,2 +1,4 @@
 models/index.js
 node_modules
+*.min.js
+vendor/

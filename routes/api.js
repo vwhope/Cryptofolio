@@ -2,13 +2,6 @@ var db = require("../models");
 var utils = require("../utils/utils");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
-
   app.get("/api/:coin", function(req, res) {
     var coin = req.params.coin;
     utils.getCoinData(coin, function(coinData) {
@@ -16,19 +9,27 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
+  app.get("/api/snapshot/:user", function(req, res) {
+    db.User.findOne({
+      attributes: [],
+      where: {
+        userName: req.params.user
+      },
+      include: [
+        {
+          model: db.Portfolio,
+          attributes: ["coin", "holdings"]
+        },
+        {
+          model: db.Transaction,
+          attributes: ["type", "currency", "quantity"]
+        }
+      ]
+    }).then(function(snapshotInfo) {
+      res.render("index", {
+        transactions: snapshotInfo.Transactions,
+        newsFeed: []
+      });
     });
   });
 };
