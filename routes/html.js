@@ -2,7 +2,6 @@ var db = require("../models");
 var utils = require("../utils/utils");
 
 module.exports = function(app) {
-  // Load index page
   app.get("/", function(req, res) {
     utils.getNewsData(function(newsData) {
       var parsedNews = utils.parseNewsData(newsData);
