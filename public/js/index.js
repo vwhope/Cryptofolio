@@ -3,7 +3,12 @@
 (function() {
   $(document).on("click", ".coin-button", coinButtonHandler);
   getSevenDayCoinPerformance("BTH");
+  getSnapshot("demoUser");
 })();
+
+// function getSnapshot(user) {
+//   $.get("/api/snapshot/" + user)
+// }
 
 function coinButtonHandler() {
   var coin = $(this).data("button");
@@ -20,9 +25,7 @@ function getSevenDayCoinPerformance(coin) {
     for (var close in data) {
       if (data.hasOwnProperty(close)) {
         ChartData.closingPoints.push(data[close].close);
-        console.log(data[close].close);
         ChartData.day.push(moment(data[close].time * 1000).format("dddd"));
-        console.log(moment(data[close].time * 1000).format("dddd"));
       }
     }
     renderLineChart(ChartData);

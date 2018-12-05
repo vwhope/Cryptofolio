@@ -9,7 +9,7 @@
     "lint": "eslint **/*.js --quiet",
     "lint:debug": "eslint **/*.js --debug",
     "fix": "eslint --fix .",
-    "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
+    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
   "license": "ISC",
   "dependencies": {
@@ -30,9 +30,10 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-config-prettier": "^2.10.0",
+    "eslint-plugin-prettier": "^2.7.0",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
   }

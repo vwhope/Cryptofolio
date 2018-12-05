@@ -1,20 +1,33 @@
-// var db = require("../models");
+var db = require("../models");
 var utils = require("../utils/utils");
 
 module.exports = function(app) {
-  // Load index page
   app.get("/", function(req, res) {
     utils.getNewsData(function(newsData) {
       var parsedNews = utils.parseNewsData(newsData);
-      res.render("index", { newsFeed: parsedNews });
+      db.User.findOne({
+        attributes: [],
+        where: {
+          userName: "demoUser"
+        },
+        include: [
+          {
+            model: db.Portfolio,
+            attributes: ["coin", "holdings"]
+          },
+          {
+            model: db.Transaction,
+            attributes: ["type", "currency", "quantity"]
+          }
+        ]
+      }).then(function(snapshotInfo) {
+        res.render("index", {
+          transactions: snapshotInfo.Transactions,
+          newsFeed: parsedNews,
+          portfolios: snapshotInfo.Portfolios
+        });
+      });
     });
-    //res.render("index", { newsFeed: data });
-    // db.Example.findAll({}).then(function(dbExamples) {
-    //   res.render("index", {
-    //     msg: "Welcome!",
-    //     examples: dbExamples
-    //   });
-    // });
   });
 
   app.get("/login", function(req, res) {
