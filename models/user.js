@@ -29,12 +29,13 @@ module.exports = function(sequelize, DataTypes) {
   //
   User.associate = function(models) {
     // A single User can only have one Portfolio
-    User.hasOne(models.Portfolio);
-  };
-  //
-  User.associate = function(models) {
-    // A single User can have many Transactions
-    User.hasMany(models.Transaction);
+    User.hasMany(models.Portfolio, {
+      onDelete: "cascade"
+    });
+
+    User.hasMany(models.Transaction, {
+      onDelete: "cascade"
+    });
   };
   return User;
 };
