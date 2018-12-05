@@ -1,7 +1,50 @@
 var db = require("../models");
+var cfg = require("../auth/config");
 var utils = require("../utils/utils");
+var jwt = require("jwt-simple");
+var auth = require("../auth/auth");
 
 module.exports = function(app) {
+  app.get("/user", auth.authenticate(), function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.user.id
+      }
+    }).then(function(user) {
+      res.json(user);
+    });
+  });
+
+  app.post("/authenticate", function(req, res) {
+    if (req.body.email && req.body.password) {
+      var email = req.body.email;
+      var password = req.body.password;
+      db.User.findOne({
+        where: {
+          email: email,
+          password: password
+        }
+      }).then(function(user) {
+        console.log(user);
+        if (user) {
+          var payload = {
+            id: user.id
+          };
+          var token = jwt.encode(payload, cfg.jwtSecret);
+          // Store token into cookieSession
+          req.session.token = token;
+          res.json({
+            token: token
+          });
+        } else {
+          res.sendStatus(401);
+        }
+      });
+    } else {
+      res.sendStatus(401);
+    }
+  });
+
   // Get all examples
   app.get("/api/examples", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
