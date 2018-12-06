@@ -3,13 +3,14 @@ var passportJWT = require("passport-jwt");
 var cfg = require("./config");
 var ExtractJwt = passportJWT.ExtractJwt;
 var Strategy = passportJWT.Strategy;
+var JWTStrategy = passportJWT.Strategy;
 var db = require("../models");
 var params = {
   secretOrKey: cfg.jwtSecret,
   jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("jwt")
 };
 
-var strategy = new Strategy(params, function(payload, done) {
+var localStrategy = new Strategy(params, function(payload, done) {
   db.User.findOne({
     where: {
       email: payload.email
@@ -25,9 +26,26 @@ var strategy = new Strategy(params, function(payload, done) {
   });
 });
 
+var jwtStrategy = new JWTStrategy({
+  jwtFromRequest: req => req.session.token,
+  secretOrKey: "MyS3cr3tK3Y",
+  },
+  (jwtPayload, done) => {
+    if (jwtPayload.expires > Date.now()) {
+      return done('jwt expired');
+    }
+
+    return done(null, jwtPayload);
+  }
+);
+
 module.exports = {
-  strategy: function() {
-    return passport.use(strategy);
+  localStrategy: function() {
+    return passport.use(localStrategy);
+  },
+
+  jwtStrategy: function() {
+    return passport.use(jwtStrategy);
   },
 
   initialize: function() {

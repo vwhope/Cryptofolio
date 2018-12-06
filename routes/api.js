@@ -3,46 +3,11 @@ var cfg = require("../auth/config");
 var utils = require("../utils/utils");
 var jwt = require("jwt-simple");
 var auth = require("../auth/auth");
-// middleware function to check for logged-in users
 
 module.exports = function(app) {
-  app.get("/test", auth.authenticate(), function(req, res) {
-    res.send("success");
+  app.get("/test", auth.authenticate("jwtStrategy"), function(req, res) {
+    res.render("test");
   });
-
-  app.post("/user/:userName", function(req, res) {
-    db.User.findOne({
-      where: {
-        id: req.user.id
-      }
-    }).then(function(user) {
-      res.json(user);
-    });
-  });
-
-  // Authenticate user and returns JWT
-  // app.post("/authenticate", function(req, res) {
-  //   var email = req.body.email;
-  //   var password = req.body.password;
-  //   db.User.findOne({
-  //     where: {
-  //       email: email,
-  //       password: password
-  //     }
-  //   }).then(function(user) {
-  //     if (!user) {
-  //       res.render("login", {
-  //         error: "Incorrect Email/Password!"
-  //       });
-  //     } else {
-  //       var token = jwt.encode(payload, cfg.jwtSecret);
-  //       // Store token into cookieSession
-  //       req.session.token = token;
-  //       res.json({
-  //         token: token
-  //       });
-  //     }
-  //   });
 
   // Authenticate user and returns JWT
   app.post("/authenticate", function(req, res) {
@@ -63,7 +28,8 @@ module.exports = function(app) {
           var token = jwt.encode(payload, cfg.jwtSecret);
           // Store & return token
           req.session.token = token;
-          res.json({ token: token });
+          // res.json({ token: token });
+          res.redirect("/test");
         } else {
           res.json({ error: true });
         }

@@ -15,8 +15,10 @@ app.use(express.static("public"));
 app.use(auth.initialize());
 app.use(cookieSession({ name: "session", keys: ["token"] }));
 
-// Setup Passport strategy
-auth.strategy();
+// Setup Passport
+app.use(auth.initialize());
+auth.localStrategy();
+auth.jwtStrategy();
 
 // Setup Handlebars
 app.engine(

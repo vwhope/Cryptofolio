@@ -32,11 +32,11 @@ function loginHandler(event) {
     },
     complete: function(data) {
       // When AJAX call is complete, will fire upon success or when error is thrown
-      if (data.responseJSON.error) {
-        $("#user-email").val("");
-        $("#password").val("");
-        $("#error-message").html("Invalid Email or Password!");
-      }
+      // if (data.responseJSON.error || data.responseJSON.error === undefined) {
+      //   $("#user-email").val("");
+      //   $("#password").val("");
+      //   $("#error-message").html("Invalid Email or Password!");
+      // }
     }
   });
 }
