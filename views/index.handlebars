@@ -1,22 +1,10 @@
-<!-- top navigation -->
-<nav class="navbar navbar-dark bg-primary">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#" id="brand-logo">Cryptofolio</a>
-  </div>
-</nav>
+{{> partials/top-nav}}
 
 <!-- below top navigation -->
 <div class="container-fluid">
   <div class="row">
 
-    <!-- left navigation -->
-    <div class="col-2" id="left-nav">
-      <a href="#" class="list-group-item list-group-item-action active"><i class="fas fa-chart-line"></i>Dashboard</a>
-      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-balance-scale"></i>Buy/Sell</a>
-      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Accounts</a>
-      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-toolbox"></i>Tools</a>
-      <a href="#" class="list-group-item list-group-item-action disabled"><i class="fas fa-cogs"></i>Settings</a>
-    </div>
+    {{> partials/left-nav}}
 
     <!-- main content area -->
     <div class="col-10" id="main-content-area">

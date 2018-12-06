@@ -1,3 +1,4 @@
+/***** Side Navigation *****/
 #left-nav {
   min-height: 100vh;
   border-right: solid 1px lightgrey;
@@ -7,10 +8,12 @@
   list-style-type: none;
   margin-top: 2vh;
 }
+
 #bootstrap-overrides .list-group-item .fas {
   margin-right: 10px;
 }
 
+/***** Main Content Area *****/
 #bootstrap-overrides #main-content-area .row {
   margin-top: 2vh;
   min-height: 40vh;
@@ -34,4 +37,18 @@
 
 #coin-buttons button {
   margin: 13px 5px 5px 5px;
+}
+
+
+/***** Signin Page *****/
+#signin-card {
+  margin: 0 auto;
+  margin-top: 15vh;
+  height: 25vh;
+  width: 60vh;
+}
+#error-message {
+  color: red;
+  font-weight: bold;
+  margin-left: 5px;
 }
