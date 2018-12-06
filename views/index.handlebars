@@ -41,14 +41,16 @@
             <div class="card-header text-primary">
               Portfolio
             </div>
-            <div class="balance-container">
-              <h2>$</h2>
-              <p>Total Balance</p>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 balance-section">
+                </div> 
+                <div class="col-md-6 chart-section">
+                  <canvas id="holdings-doughnut-chart" width="50" height="50"></canvas>
+                </div> 
+              </div>
             </div>
-            <div class="coins-owned">
-              {{#each portfolios}}
-                <li class="list-group-item">{{coin}} {{holdings}}</li>
-              {{/each}}
+            <div id="partial-coin-snapshot">
             </div>
           </div>
         </div>
@@ -59,11 +61,8 @@
             <div class="card-header text-primary">
               Recent Transactions
             </div>
-            <ul class="list-group list-group-flush">
-              {{#each transactions}}
-                <li class="list-group-item">{{type}} {{currency}} {{quantity}}</li>
-              {{/each}}
-            </ul>
+            <div id="transaction-list">
+            </div>
           </div>
         </div>
         <div class="col-sm-6">
