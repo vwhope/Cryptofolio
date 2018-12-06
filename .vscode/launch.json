@@ -9,6 +9,12 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceFolder}/server.js"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach Program",
+            "protocol": "inspector"
         }
     ]
 }

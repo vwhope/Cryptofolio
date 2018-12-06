@@ -1,8 +1,22 @@
+<!-- top navigation -->
+<nav class="navbar navbar-dark bg-primary">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#" id="brand-logo">Cryptofolio</a>
+  </div>
+</nav>
+
 <!-- below top navigation -->
 <div class="container-fluid">
   <div class="row">
 
-    {{> left-nav}}
+    <!-- left navigation -->
+    <div class="col-2" id="left-nav">
+      <a href="#" class="list-group-item list-group-item-action active"><i class="fas fa-chart-line"></i>Dashboard</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-balance-scale"></i>Buy/Sell</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-book"></i>Accounts</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-toolbox"></i>Tools</a>
+      <a href="#" class="list-group-item list-group-item-action disabled"><i class="fas fa-cogs"></i>Settings</a>
+    </div>
 
     <!-- main content area -->
     <div class="col-10" id="main-content-area">
@@ -27,16 +41,12 @@
             <div class="card-header text-primary">
               Portfolio
             </div>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6 balance-section">
-                </div> 
-                <div class="col-md-6 chart-section">
-                  <canvas id="holdings-doughnut-chart" width="50" height="50"></canvas>
-                </div> 
-              </div>
+            <div class="balance-container">
+              <h2>$</h2>
+              <p>Total Balance</p>
             </div>
-            <div id="partial-coin-snapshot">
+            <div class="coins-owned">
+
             </div>
           </div>
         </div>
@@ -47,8 +57,9 @@
             <div class="card-header text-primary">
               Recent Transactions
             </div>
-            <div id="transaction-list">
-            </div>
+            <ul class="list-group list-group-flush">
+
+            </ul>
           </div>
         </div>
         <div class="col-sm-6">
@@ -57,12 +68,7 @@
               Latest News
             </div>
             <ul class="list-group list-group-flush">
-              {{#each newsFeed}}
-                <li class="list-group-item">
-                  <img src="{{imageUrl}}"></img>
-                  <a href="{{link}}">{{title}}</a>
-                </li>
-              {{/each}}
+
             </ul>
           </div>
         </div>
