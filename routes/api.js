@@ -1,8 +1,12 @@
 var db = require("../models");
 <<<<<<< HEAD
+<<<<<<< HEAD
 var cfg = require("../auth/config");
 =======
 >>>>>>> master
+=======
+var cfg = require("../auth/config");
+>>>>>>> 56da7a03e0fc6ffb44e751fdb658e19ff405d3e6
 var utils = require("../utils/utils");
 var jwt = require("jwt-simple");
 var auth = require("../auth/auth");
@@ -12,6 +16,19 @@ module.exports = function(app) {
     res.render("test");
   });
 
+<<<<<<< HEAD
+=======
+  app.post("/user/:userName", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.user.id
+      }
+    }).then(function(user) {
+      res.json(user);
+    });
+  });
+
+>>>>>>> 56da7a03e0fc6ffb44e751fdb658e19ff405d3e6
   // Authenticate user and returns JWT
   app.post("/authenticate", function(req, res) {
     // Validate email and password is sent
