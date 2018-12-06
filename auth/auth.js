@@ -9,6 +9,12 @@ var params = {
   secretOrKey: cfg.jwtSecret,
   jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("jwt")
 };
+var jwtParams = {
+  secretOrKey: cfg.jwtSecret,
+  jwtFromRequest: function(req) {
+    return req.session.token;
+  }
+};
 
 var localStrategy = new Strategy(params, function(payload, done) {
   db.User.findOne({
@@ -26,18 +32,12 @@ var localStrategy = new Strategy(params, function(payload, done) {
   });
 });
 
-var jwtStrategy = new JWTStrategy({
-  jwtFromRequest: req => req.session.token,
-  secretOrKey: "MyS3cr3tK3Y",
-  },
-  (jwtPayload, done) => {
-    if (jwtPayload.expires > Date.now()) {
-      return done('jwt expired');
-    }
-
-    return done(null, jwtPayload);
+var jwtStrategy = new JWTStrategy(jwtParams, function(jwtPayload, done) {
+  if (jwtPayload.expires > Date.now()) {
+    return done("jwt expired");
   }
-);
+  return done(null, jwtPayload);
+});
 
 module.exports = {
   localStrategy: function() {

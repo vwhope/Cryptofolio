@@ -30,7 +30,7 @@ function loginHandler(event) {
       console.log("AJAX call failed.");
       console.log(textStatus + ": " + errorThrown);
     },
-    complete: function(data) {
+    complete: function() {
       // When AJAX call is complete, will fire upon success or when error is thrown
       // if (data.responseJSON.error || data.responseJSON.error === undefined) {
       //   $("#user-email").val("");
