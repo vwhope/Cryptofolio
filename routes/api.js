@@ -3,7 +3,6 @@ var cfg = require("../auth/config");
 var utils = require("../utils/utils");
 var jwt = require("jwt-simple");
 var auth = require("../auth/auth");
-// middleware function to check for logged-in users
 
 module.exports = function(app) {
   app.get("/test", auth.authenticate(), function(req, res) {
@@ -19,30 +18,6 @@ module.exports = function(app) {
       res.json(user);
     });
   });
-
-  // Authenticate user and returns JWT
-  // app.post("/authenticate", function(req, res) {
-  //   var email = req.body.email;
-  //   var password = req.body.password;
-  //   db.User.findOne({
-  //     where: {
-  //       email: email,
-  //       password: password
-  //     }
-  //   }).then(function(user) {
-  //     if (!user) {
-  //       res.render("login", {
-  //         error: "Incorrect Email/Password!"
-  //       });
-  //     } else {
-  //       var token = jwt.encode(payload, cfg.jwtSecret);
-  //       // Store token into cookieSession
-  //       req.session.token = token;
-  //       res.json({
-  //         token: token
-  //       });
-  //     }
-  //   });
 
   // Authenticate user and returns JWT
   app.post("/authenticate", function(req, res) {
@@ -84,6 +59,27 @@ module.exports = function(app) {
     var coin = req.params.coin;
     utils.getCoinData(coin, function(coinData) {
       res.json(coinData);
+    });
+  });
+
+  app.get("/api/snapshot/:user", function(req, res) {
+    db.User.findOne({
+      attributes: [],
+      where: {
+        userName: "demoUser"
+      },
+      include: [
+        {
+          model: db.Portfolio,
+          attributes: ["coin", "holdings"]
+        },
+        {
+          model: db.Transaction,
+          attributes: ["type", "currency", "quantity"]
+        }
+      ]
+    }).then(function(snapshotInfo) {
+      res.json(snapshotInfo);
     });
   });
 };
