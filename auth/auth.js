@@ -12,12 +12,12 @@ var params = {
 var strategy = new Strategy(params, function(payload, done) {
   db.User.findOne({
     where: {
-      id: payload.id
+      email: payload.email
     }
   }).then(function(user) {
     if (user) {
       return done(null, {
-        id: user.id
+        email: payload.email
       });
     } else {
       return done(new Error("User not found"), null);

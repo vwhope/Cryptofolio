@@ -3,9 +3,14 @@ var cfg = require("../auth/config");
 var utils = require("../utils/utils");
 var jwt = require("jwt-simple");
 var auth = require("../auth/auth");
+// middleware function to check for logged-in users
 
 module.exports = function(app) {
-  app.get("/user", auth.authenticate(), function(req, res) {
+  app.get("/test", auth.authenticate(), function(req, res) {
+    res.send("success");
+  });
+
+  app.post("/user/:userName", function(req, res) {
     db.User.findOne({
       where: {
         id: req.user.id
@@ -15,7 +20,33 @@ module.exports = function(app) {
     });
   });
 
+  // Authenticate user and returns JWT
+  // app.post("/authenticate", function(req, res) {
+  //   var email = req.body.email;
+  //   var password = req.body.password;
+  //   db.User.findOne({
+  //     where: {
+  //       email: email,
+  //       password: password
+  //     }
+  //   }).then(function(user) {
+  //     if (!user) {
+  //       res.render("login", {
+  //         error: "Incorrect Email/Password!"
+  //       });
+  //     } else {
+  //       var token = jwt.encode(payload, cfg.jwtSecret);
+  //       // Store token into cookieSession
+  //       req.session.token = token;
+  //       res.json({
+  //         token: token
+  //       });
+  //     }
+  //   });
+
+  // Authenticate user and returns JWT
   app.post("/authenticate", function(req, res) {
+    // Validate email and password is sent
     if (req.body.email && req.body.password) {
       var email = req.body.email;
       var password = req.body.password;
@@ -25,23 +56,20 @@ module.exports = function(app) {
           password: password
         }
       }).then(function(user) {
-        console.log(user);
         if (user) {
           var payload = {
-            id: user.id
+            email: email
           };
           var token = jwt.encode(payload, cfg.jwtSecret);
-          // Store token into cookieSession
+          // Store & return token
           req.session.token = token;
-          res.json({
-            token: token
-          });
+          res.json({ token: token });
         } else {
-          res.sendStatus(401);
+          res.json({ error: true });
         }
       });
     } else {
-      res.sendStatus(401);
+      res.status(401).send({ error: "Unauthorized" });
     }
   });
 

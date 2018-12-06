@@ -6,29 +6,19 @@ var cookieSession = require("cookie-session");
 
 var db = require("./models");
 var auth = require("./auth/auth");
-
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// Setup Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(bodyParser.json());
 app.use(auth.initialize());
+app.use(cookieSession({ name: "session", keys: ["token"] }));
 
-// Cookies
-app.use(
-  cookieSession({
-    name: "session",
-    keys: ["token"]
-  })
-);
-
-// Passport strategy
+// Setup Passport strategy
 auth.strategy();
 
-// Handlebars
+// Setup Handlebars
 app.engine(
   "handlebars",
   exphbs({
@@ -37,7 +27,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Routes
+// Requrie routes
 require("./routes/api")(app);
 require("./routes/html")(app);
 
