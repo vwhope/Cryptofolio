@@ -2,8 +2,6 @@
 
 (function() {
   $(document).on("click", ".coin-button", coinButtonHandler);
-  getSevenDayCoinPerformance("BTH");
-  getSnapshot("demoUser");
 })();
 
 function getSnapshot(user) {

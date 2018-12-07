@@ -5,21 +5,19 @@ var jwt = require("jwt-simple");
 var auth = require("../auth/auth");
 
 module.exports = function(app) {
-  app.get("/test", auth.authenticate("jwtStrategy"), function(req, res) {
-    res.render("test");
-  });
-
   // Authenticate user and returns JWT
   app.post("/authenticate", function(req, res) {
-    // Validate email and password is sent
+    // Validate email and password is sent in the request
     if (req.body.email && req.body.password) {
       var email = req.body.email;
       var password = req.body.password;
+      // Search in DB for user with email and password
       db.User.findOne({
         where: {
           email: email,
           password: password
         }
+        // If found, create jwt token and store in cookie
       }).then(function(user) {
         if (user) {
           var payload = {
@@ -29,9 +27,8 @@ module.exports = function(app) {
           // Store & return token
           req.session.token = token;
           res.json({ token: token });
-          // res.redirect("/test");
         } else {
-          res.json({ error: true });
+          res.status(401).send({ error: "Unauthorized" });
         }
       });
     } else {
