@@ -24,6 +24,7 @@ function loginHandler(event) {
     url: "/authenticate",
     success: function() {
       console.log("AJAX call successful.");
+      window.location.href = "/";
     },
     error: function(jqXHR, textStatus, errorThrown) {
       // When AJAX call has failed
