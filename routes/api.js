@@ -5,22 +5,21 @@ var jwt = require("jwt-simple");
 var auth = require("../auth/auth");
 
 module.exports = function(app) {
-  app.get("/test", auth.authenticate("jwtStrategy"), function(req, res) {
-    res.render("test");
-  });
-
   // Authenticate user and returns JWT
-  app.post("/authenticate", function(req, res) {
-    // Validate email and password is sent
+  app.post("/api/authenticate", function(req, res) {
+    // Validate email and password is sent in the request
     if (req.body.email && req.body.password) {
       var email = req.body.email;
       var password = req.body.password;
+      // Search in DB for user with email and password
       db.User.findOne({
         where: {
           email: email,
           password: password
         }
+        // If found, create jwt token and store in cookie
       }).then(function(user) {
+        console.log("got called");
         if (user) {
           var payload = {
             email: email
@@ -29,9 +28,8 @@ module.exports = function(app) {
           // Store & return token
           req.session.token = token;
           res.json({ token: token });
-          // res.redirect("/test");
         } else {
-          res.json({ error: true });
+          res.status(401).send({ error: "Unauthorized" });
         }
       });
     } else {
@@ -39,25 +37,21 @@ module.exports = function(app) {
     }
   });
 
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
-
-  app.get("/api/:coin", function(req, res) {
+  app.get("/api/:coin", auth.authenticate("jwtStrategy"), function(req, res) {
     var coin = req.params.coin;
     utils.getCoinData(coin, function(coinData) {
       res.json(coinData);
     });
   });
 
-  app.get("/api/snapshot/:user", function(req, res) {
+  app.get("/api/snapshot/:email", auth.authenticate("jwtStrategy"), function(
+    req,
+    res
+  ) {
     db.User.findOne({
       attributes: [],
       where: {
-        userName: "demoUser"
+        email: req.params.email
       },
       include: [
         {
@@ -72,5 +66,12 @@ module.exports = function(app) {
     }).then(function(snapshotInfo) {
       res.json(snapshotInfo);
     });
+  });
+
+  app.get("/api/isLoggedIn", auth.authenticate("jwtStrategy"), function(
+    req,
+    res
+  ) {
+    res.status(200).send({ message: "Authorized" });
   });
 };
