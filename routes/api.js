@@ -2,7 +2,7 @@ var db = require("../models");
 var cfg = require("../auth/config");
 var utils = require("../utils/utils");
 var jwt = require("jwt-simple");
-//var auth = require("../auth/auth");
+var auth = require("../auth/auth");
 
 module.exports = function(app) {
   // Authenticate user and returns JWT
@@ -36,7 +36,7 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/:coin", function(req, res) {
+  app.get("/api/:coin", auth.authenticate("jwtStrategy"), function(req, res) {
     var coin = req.params.coin;
     utils.getCoinData(coin, function(coinData) {
       res.json(coinData);
