@@ -1,6 +1,6 @@
 //var db = require("../models");
 var utils = require("../utils/utils");
-//var auth = require("../auth/auth");
+var auth = require("../auth/auth");
 
 module.exports = function(app) {
   app.get("/", function() {
@@ -14,7 +14,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/trade", function(req, res) {
+  app.get("/trade", auth.authenticate("jwtStrategy"), function(req, res) {
     res.render("trade");
   });
 

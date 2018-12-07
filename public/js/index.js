@@ -1,9 +1,16 @@
 "use strict";
 
 $(document).ready(function() {
-  $("#myModal").modal("show");
   $(document).on("click", ".coin-button", coinButtonHandler);
   $(document).on("click", "#submit-login-btn", loginHandler);
+  isLoggedIn(function(value) {
+    if (!value) {
+      $("#myModal").modal("show");
+    } else {
+      $("#myModal").modal("hide");
+      $("#main-content-area").css("visibility", "visible");
+    }
+  });
 });
 
 function loginHandler(event) {
@@ -14,38 +21,54 @@ function loginHandler(event) {
   var email = $("#user-email").val();
   var password = $("#password").val();
 
-  var payload = {
-    email: email,
-    password: password
-  };
+  // Validation
+  if (email !== "" && password !== "") {
+    var payload = {
+      email: email,
+      password: password
+    };
 
-  // Make request to authenticate
+    // Make request to authenticate
+    $.ajax({
+      type: "POST",
+      data: payload,
+      url: "/api/authenticate",
+      success: function() {
+        console.log("AJAX call successful.");
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        // When AJAX call has failed
+        console.log("AJAX call failed.");
+        console.log(textStatus + ": " + errorThrown);
+      },
+      complete: function() {
+        displayInfoAfterLogin(email);
+      }
+    });
+  }
+}
+
+function isLoggedIn(callback) {
+  console.log("isLogged got called");
   $.ajax({
-    type: "POST",
-    data: payload,
-    url: "/authenticate",
+    type: "GET",
+    url: "/api/isLoggedIn",
     success: function() {
-      console.log("AJAX call successful.");
+      console.log("user is logged in");
+      callback(true);
     },
-    error: function(jqXHR, textStatus, errorThrown) {
-      // When AJAX call has failed
-      console.log("AJAX call failed.");
-      console.log(textStatus + ": " + errorThrown);
-    },
-    complete: function() {
-      // When AJAX call is complete, will fire upon success or when error is thrown
-      // if (data.responseJSON.error || data.responseJSON.error === undefined) {
-      //   $("#user-email").val("");
-      //   $("#password").val("");
-      //   $("#error-message").html("Invalid Email or Password!");
-      // }
-      getSevenDayCoinPerformance("BTH");
-      getSnapshot("demoUser");
-      $(document).ready(function() {
-        $("#myModal").modal("hide");
-      });
+    error: function() {
+      console.log("user is not logged in");
+      callback(false);
     }
   });
+}
+
+function displayInfoAfterLogin(user) {
+  $("#myModal").modal("hide");
+  $("#main-content-area").css("visibility", "visible");
+  getSevenDayCoinPerformance("BTH");
+  getSnapshot(user);
 }
 
 function getSnapshot(user) {
@@ -57,7 +80,6 @@ function getSnapshot(user) {
 }
 
 function renderThreeOrLessCoins(portfolioData) {
-  console.log(portfolioData);
   var numberOfCoinsToDisplay = 3;
   var iterator = 0;
   var newUl = $("<ul>").addClass("list-group list-group-flush coin-snapshot");

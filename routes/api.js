@@ -6,7 +6,7 @@ var auth = require("../auth/auth");
 
 module.exports = function(app) {
   // Authenticate user and returns JWT
-  app.post("/authenticate", function(req, res) {
+  app.post("/api/authenticate", function(req, res) {
     // Validate email and password is sent in the request
     if (req.body.email && req.body.password) {
       var email = req.body.email;
@@ -19,6 +19,7 @@ module.exports = function(app) {
         }
         // If found, create jwt token and store in cookie
       }).then(function(user) {
+        console.log("got called");
         if (user) {
           var payload = {
             email: email
@@ -43,11 +44,14 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/snapshot/:user", function(req, res) {
+  app.get("/api/snapshot/:email", auth.authenticate("jwtStrategy"), function(
+    req,
+    res
+  ) {
     db.User.findOne({
       attributes: [],
       where: {
-        userName: "demoUser"
+        email: req.params.email
       },
       include: [
         {
@@ -62,5 +66,12 @@ module.exports = function(app) {
     }).then(function(snapshotInfo) {
       res.json(snapshotInfo);
     });
+  });
+
+  app.get("/api/isLoggedIn", auth.authenticate("jwtStrategy"), function(
+    req,
+    res
+  ) {
+    res.status(200).send({ message: "Authorized" });
   });
 };
