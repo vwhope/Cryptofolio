@@ -2,7 +2,7 @@ var db = require("../models");
 var cfg = require("../auth/config");
 var utils = require("../utils/utils");
 var jwt = require("jwt-simple");
-var auth = require("../auth/auth");
+//var auth = require("../auth/auth");
 
 module.exports = function(app) {
   // Authenticate user and returns JWT
@@ -34,13 +34,6 @@ module.exports = function(app) {
     } else {
       res.status(401).send({ error: "Unauthorized" });
     }
-  });
-
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
   });
 
   app.get("/api/:coin", function(req, res) {
