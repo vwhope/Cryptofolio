@@ -16,7 +16,7 @@
 /***** Main Content Area *****/
 #bootstrap-overrides #main-content-area .row {
   margin-top: 2vh;
-  min-height: 40vh;
+  min-height: 30vh;
 }
 
 #bootstrap-overrides #main-content-area .card {
@@ -40,6 +40,18 @@
 }
 
 /***** Signin Page *****/
+
+.modal-header, h4, .close {
+  background-color: #007bff;
+  color:white !important;
+  text-align: center;
+  font-size: 30px;
+}
+
+.modal-footer {
+  background-color: #f9f9f9;
+}
+
 #signin-card {
   margin: 0 auto;
   margin-top: 15vh;
@@ -60,4 +72,3 @@
 #trade #coin-buttons {
   margin-bottom: 10px;
 }
-
