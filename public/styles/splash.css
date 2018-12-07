@@ -1,0 +1,299 @@
+html {
+    font-family: 'Exo', sans-serif;  
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.65;
+    }
+  
+  body {
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: inherit;
+    color: inherit;
+    padding-top: 0;
+    counter-reset: captions;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Exo', sans-serif;
+    font-weight: 100;
+    margin-bottom: .5rem;
+    line-height: 1.25;
+    color: #fff;
+    text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+    line-height: 50px;
+  }
+  
+  h2, {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-weight: 700;
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+  }
+  
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 20px;
+  }
+  
+  a {
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: none;
+    color: #0d1c4b;
+    transition: color 0.6s ease;
+  }
+  
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+  }
+  
+  .section-heading p {
+    font-weight: 100;
+    font-size: 1.1rem;
+   }
+  
+  #home.home-section {
+    background-image: url(../images/cosmos-1853491_1920.jpg);
+    padding: 110px 0 110px 0;
+    animation: intro 0.3s both;
+    animation-delay: 0.15s;
+  }
+  
+  #insert-1.home-section {
+    background-color: #0d1c4b;
+    padding: 110px 0 110px 0;
+    animation: intro 0.3s both;
+    animation-delay: 0.15s;
+  }
+  
+  #features.home-section {
+    background-color: black; 
+    padding: 110px 0 110px 0;
+    animation: intro 0.3s both;
+    animation-delay: 0.15s;
+    text-align: center;
+  }
+  
+  #insert-2.home-section {
+    background-image: url(../images/abstract-ai-art-373543\ \(1\).jpg);
+    padding: 110px 0 110px 0;
+    animation: intro 0.3s both;
+    animation-delay: 0.15s;
+  }
+  
+  #contact.home-section {
+    background-color:#0e2150; 
+    background: linear-gradient(#075c61, black);
+    padding: 125px 0 20px 0;
+    animation: intro 0.3s both;
+    animation-delay: 0.15s; 
+    text-align: center;
+  }
+  
+  /*** NAVBAR ***/
+  
+  .navbar {
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    z-index: 10000;
+    position: fixed;
+    width: 100%;
+    left: 0;
+  }
+  
+  #brand-logo {
+    font-family: 'Saira Semi Condensed', sans-serif;     
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  
+  .navbar-light .navbar-brand a:hover {
+    color: #0d1c4b;
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%
+  }
+  
+  #navbarSupportedContent ul li a {
+    color: #fff;
+    font-family: 'Saira Semi Condensed', sans-serif;  
+  }
+  
+  #navbarSupportedContent ul li a:hover {
+    color: #007bff;
+  }
+  
+  #navbarSupportedContent ul {
+    margin-left:auto; margin-right:0;
+  }
+  
+  /*** HOME ***/
+  
+  #home-page-header {
+    text-align: center;
+  }
+  
+  img[alt="coinImg"] {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  #home-text h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 100;
+    color: #fff;
+    margin: 20px 0 10px 0;
+  }
+  
+  #home-title h3 {
+    font-size: 1.2rem;
+    font-weight: 100;
+    /* color: rgba(0,0,0, 0.54);  */
+    color: #fff;
+    margin: 0px 0 10px 0;
+  }
+  
+  /*** Insert Bar ***/
+  
+  #insert-text {
+    text-align: center;
+  }
+  /* .card {
+    color: black;
+    width: 300px;
+  }
+  
+  .card .card-text {
+    color: black;
+  } */
+  
+  /*** FEATURES ***/
+  
+  #features-header {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+    
+  img[alt="newspaper"] {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; 
+    margin-bottom: 30px;
+    }
+  
+  /*** CONTACT PAGE ***/ 
+  
+  .devicon-header p {
+    text-align: center;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+  }
+  
+  .devicon {
+    display: block;
+    width: 100%;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 10px;
+  }
+        
+  #contact-header {
+    text-align: center;
+  }
+  
+  #contact.home-section li {
+    padding-top: 0.8rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  #contact.home-section .fa-li {
+    position: absolute;
+    width: 2rem;
+    top: 0.14285714em;
+    text-align: center;
+  }
+  
+  a .big-icon {
+    font-size: 3rem;
+    margin-left: 5px;
+    color: white;
+  }
+  
+  a:hover .big-icon {
+    color: #007bff;
+  }
+  
+  a:hover .fa {
+    color: #007bff;
+  }
+  /*** FOOTER ***/
+  
+  .footer {
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: white;
+    height: 55px;  
+    font-size: 14px;
+    /*position:fixed;     
+    bottom: 0;           */
+  }
+  
+  .fa-chevron-up {
+    color: #fff;
+  }
+  
+  .pull-right {
+    float: right;
+  }
+  
+  .pull-right a:hover {
+    color: #007bff;
+    font-weight: normal;
+  }
+  
+  /*** MEDIA QUERIES ***/
+  
+  @media (max-width: 768px) {
+    img[alt="coinImg"] {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+  }
+  
+  
+  
