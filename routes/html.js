@@ -1,8 +1,13 @@
 //var db = require("../models");
 var utils = require("../utils/utils");
+var auth = require("../auth/auth");
 
 module.exports = function(app) {
-  app.get("/", function(req, res) {
+  app.get("/", function() {
+    res.render("splash");
+  });
+
+  app.get("/dashboard", auth.authenticate("jwtStrategy"), function(req, res) {
     utils.getNewsData(function(newsData) {
       var parsedNews = utils.parseNewsData(newsData);
       res.render("index", { newsFeed: parsedNews });
@@ -11,6 +16,10 @@ module.exports = function(app) {
 
   app.get("/login", function(req, res) {
     res.render("login");
+  });
+
+  app.get("/trade", function(req, res) {
+    res.render("trade");
   });
 
   // // Load example page and pass in an example by id
