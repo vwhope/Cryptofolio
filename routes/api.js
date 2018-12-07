@@ -28,8 +28,8 @@ module.exports = function(app) {
           var token = jwt.encode(payload, cfg.jwtSecret);
           // Store & return token
           req.session.token = token;
-          // res.json({ token: token });
-          res.redirect("/test");
+          res.json({ token: token });
+          // res.redirect("/test");
         } else {
           res.json({ error: true });
         }

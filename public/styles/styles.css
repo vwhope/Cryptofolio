@@ -52,3 +52,13 @@
   font-weight: bold;
   margin-left: 5px;
 }
+
+/***** Trade *****/
+#trade {
+  max-width: 80%;
+  margin: 0 auto;
+}
+#trade #coin-buttons {
+  margin-bottom: 10px;
+}
+
