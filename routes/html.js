@@ -1,4 +1,3 @@
-//var db = require("../models");
 var utils = require("../utils/utils");
 var auth = require("../auth/auth");
 

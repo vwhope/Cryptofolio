@@ -66,7 +66,7 @@ module.exports = function(app) {
     req,
     res
   ) {
-    res.status(200).json({ "email": req.session.email });
+    res.status(200).json({ email: req.session.email });
   });
 
   app.get("/api/:coin", auth.authenticate("jwtStrategy"), function(req, res) {
