@@ -22,7 +22,7 @@ function loginHandler(event) {
   var email = $("#user-email").val();
   var password = $("#password").val();
 
-  // Validation
+  // Validation to make sure email and password is not empty.
   if (email !== "" && password !== "") {
     var payload = {
       email: email,
