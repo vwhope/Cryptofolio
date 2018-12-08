@@ -109,7 +109,7 @@ html {
   /*** NAVBAR ***/
   
   .navbar {
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.0);
     top: 0;
     z-index: 10000;
     position: fixed;

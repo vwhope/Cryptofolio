@@ -3,8 +3,10 @@ var utils = require("../utils/utils");
 var auth = require("../auth/auth");
 
 module.exports = function(app) {
-  app.get("/", function() {
-    res.render("splash");
+  app.get("/", function(req, res) {
+    res.render("splash", {
+      layout: false
+    });
   });
 
   app.get("/dashboard", function(req, res) {
