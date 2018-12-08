@@ -22,7 +22,7 @@ function loginHandler(event) {
   var email = $("#user-email").val();
   var password = $("#password").val();
 
-  // Validation
+  // Validation to make sure email and password is not empty.
   if (email !== "" && password !== "") {
     var payload = {
       email: email,
@@ -117,24 +117,37 @@ function renderThreeOrLessCoins(portfolioData) {
 function renderHoldingsPiChart(portfolioData) {
   var chartData = {
     holdings: [],
-    coin: []
+    coin: [],
+    color: [],
+    highlights: []
   };
-  for (var holdings in portfolioData) {
-    if (portfolioData.hasOwnProperty(holdings)) {
-      chartData.holdings.push(portfolioData[holdings].holdings);
-      chartData.coin.push(portfolioData[holdings].coin);
-    }
+
+  var numberOfCoins = portfolioData.length;
+  var i;
+  for (i = 0; i < numberOfCoins; i++) {
+    var r = Math.floor(Math.random() * 200);
+    var g = Math.floor(Math.random() * 200);
+    var b = Math.floor(Math.random() * 200);
+    var v = Math.floor(Math.random() * 500);
+    var c = "rgb(" + r + ", " + g + ", " + b + ")";
+    var h = "rgb(" + (r + 20) + ", " + (g + 20) + ", " + (b + 20) + ")";
+    chartData.holdings.push(portfolioData[i].holdings);
+    chartData.coin.push(portfolioData[i].coin);
+    chartData.color.push(c);
+    chartData.highlights.push(h);
   }
+
   var sdpChartElem = document
     .getElementById("holdings-doughnut-chart")
     .getContext("2d");
   new Chart(sdpChartElem, {
-    type: "doughnut",
+    type: "pie",
     data: {
       labels: chartData.coin,
       datasets: [
         {
-          data: chartData.holdings
+          data: chartData.holdings,
+          backgroundColor: chartData.color
         }
       ]
     }
