@@ -3,12 +3,13 @@
 $(document).ready(function() {
   $(document).on("click", ".coin-button", coinButtonHandler);
   $(document).on("click", "#submit-login-btn", loginHandler);
-  isLoggedIn(function(value) {
+  isLoggedIn(function(value, email) {
     if (!value) {
       $("#myModal").modal("show");
     } else {
       $("#myModal").modal("hide");
       $("#main-content-area").css("visibility", "visible");
+      displayInfoAfterLogin(email);
     }
   });
 });
@@ -52,10 +53,11 @@ function isLoggedIn(callback) {
   console.log("isLogged got called");
   $.ajax({
     type: "GET",
-    url: "/api/isLoggedIn",
-    success: function() {
+    url: "/api/isLoggedIn/",
+    success: function(data) {
       console.log("user is logged in");
-      callback(true);
+      console.log(data.email);
+      callback(true, data.email);
     },
     error: function() {
       console.log("user is not logged in");

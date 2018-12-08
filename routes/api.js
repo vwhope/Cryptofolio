@@ -26,6 +26,7 @@ module.exports = function(app) {
           };
           var token = jwt.encode(payload, cfg.jwtSecret);
           // Store & return token
+          req.session.email = email;
           req.session.token = token;
           res.json({ token: token });
         } else {
@@ -35,13 +36,6 @@ module.exports = function(app) {
     } else {
       res.status(401).send({ error: "Unauthorized" });
     }
-  });
-
-  app.get("/api/:coin", auth.authenticate("jwtStrategy"), function(req, res) {
-    var coin = req.params.coin;
-    utils.getCoinData(coin, function(coinData) {
-      res.json(coinData);
-    });
   });
 
   app.get("/api/snapshot/:email", auth.authenticate("jwtStrategy"), function(
@@ -72,6 +66,13 @@ module.exports = function(app) {
     req,
     res
   ) {
-    res.status(200).send({ message: "Authorized" });
+    res.status(200).json({ "email": req.session.email });
+  });
+
+  app.get("/api/:coin", auth.authenticate("jwtStrategy"), function(req, res) {
+    var coin = req.params.coin;
+    utils.getCoinData(coin, function(coinData) {
+      res.json(coinData);
+    });
   });
 };
