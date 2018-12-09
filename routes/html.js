@@ -8,7 +8,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/dashboard", function(req, res) {
+  app.get("/dashboard", auth.authenticate("jwtStrategy"), function(req, res) {
     utils.getNewsData(function(newsData) {
       var parsedNews = utils.parseNewsData(newsData);
       res.render("index", { newsFeed: parsedNews });
@@ -17,6 +17,10 @@ module.exports = function(app) {
 
   app.get("/trade", auth.authenticate("jwtStrategy"), function(req, res) {
     res.render("trade");
+  });
+
+  app.get("/settings", auth.authenticate("jwtStrategy"), function(req, res) {
+    res.render("settings");
   });
 
   // Render 404 page for any unmatched routes
