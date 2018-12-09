@@ -235,10 +235,10 @@ function renderAccountTotal(portfolio) {
   }
   var totalTitle = $("<div class='total-title'>")
     .addClass("account-total")
-    .text("Account Total:");
-  var totalAmount = $("<div class='total'>")
+    .text("Account Balance:");
+  var totalAmount = $("<div class='total-balance'>")
     .addClass("account-total")
-    .text(total.toFixed(2));
-  $(".balance-section").append(totalTitle);
-  $(".balance-section").append(totalAmount);
+    .text("$" + total.toFixed(2));
+  $("#portfolio-total").append(totalTitle);
+  $("#portfolio-total").append(totalAmount);
 }

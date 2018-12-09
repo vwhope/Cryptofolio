@@ -68,6 +68,18 @@ function updatePassword() {
   }).then(function(data) {
     console.log("ajax then:", data);
     // TODO: Call update password api
+    $.ajax({
+      type: "PUT",
+      url: "/api/isLoggedIn",
+      success: function(data) {
+        console.log("AJAX call successful.");
+        console.log("ajax success:", data);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log("AJAX call failed.");
+        console.log(textStatus + ": " + errorThrown);
+      }
+    });
   });
 }
 
