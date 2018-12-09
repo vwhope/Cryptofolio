@@ -50,7 +50,7 @@ module.exports = function(app) {
       include: [
         {
           model: db.Portfolio,
-          attributes: ["coin", "holdings"]
+          attributes: ["coin", "symbol", "holdings"]
         },
         {
           model: db.Transaction,
@@ -58,8 +58,26 @@ module.exports = function(app) {
         }
       ]
     }).then(function(snapshotInfo) {
-      res.json(snapshotInfo);
+      utils.compileInfo(snapshotInfo, function(compiledInfo) {
+        res.json(compiledInfo);
+      });
     });
+  });
+
+  app.put("/api/updatePassword", function(res, req) {
+    db.User.update({
+      password: req.body.password,
+      where: {
+        email: req.body.email
+      }
+    })
+      .then(function(response) {
+        res.status(200).json(response);
+      })
+      .catch(function(error) {
+        res.status(304);
+        console.log(error);
+      });
   });
 
   app.get("/api/isLoggedIn", auth.authenticate("jwtStrategy"), function(

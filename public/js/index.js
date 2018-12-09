@@ -76,6 +76,7 @@ function getSnapshot(user) {
     renderHoldingsPiChart(data.Portfolios);
     renderRecentTransactions(data.Transactions);
     renderThreeOrLessCoins(data.Portfolios);
+    renderAccountTotal(data.Portfolios);
   });
 }
 
@@ -213,4 +214,15 @@ function renderLineChart(chartData) {
       ]
     }
   });
+}
+
+function renderAccountTotal(portfolio) {
+  var total = 0;
+  for (var i = 0; i < portfolio.length; i++) {
+    total += parseFloat(portfolio[i].holdings) * portfolio[i].price;
+  }
+  var newPTag = $("<p>")
+    .addClass("account-total")
+    .text(total.toFixed(2));
+  $(".balance-section").append(newPTag);
 }

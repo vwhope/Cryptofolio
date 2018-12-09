@@ -8,6 +8,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    symbol: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     holdings: {
       type: DataTypes.DECIMAL(10, 5),
       allowNull: false,
