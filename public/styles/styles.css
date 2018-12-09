@@ -40,7 +40,6 @@
 }
 
 /***** Signin Page *****/
-
 .modal-header, h4, .close {
   background-color: #007bff;
   color:white !important;
@@ -71,4 +70,36 @@
 }
 #trade #coin-buttons {
   margin-bottom: 10px;
+}
+
+/***** Settings *****/
+#settings-tab {
+  padding: 20px 20px;
+  border-bottom: solid 1px lightgray;
+}
+
+#settings-tab li {
+  display: inline;
+}
+
+#settings-tab a {
+  padding: 0px;
+  padding-right: 15px;
+}
+
+#profile-image {
+  border-radius: 50%;
+  float: left;
+  margin: 0 auto;
+}
+#profile-detail {
+  padding-left: 250px;
+}
+
+#error-message {
+  color: red;
+}
+
+.modal-dialog {
+  max-width: 600px;
 }

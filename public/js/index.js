@@ -36,14 +36,12 @@ function loginHandler(event) {
       url: "/api/authenticate",
       success: function() {
         console.log("AJAX call successful.");
+        displayInfoAfterLogin(email);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         // When AJAX call has failed
         console.log("AJAX call failed.");
         console.log(textStatus + ": " + errorThrown);
-      },
-      complete: function() {
-        displayInfoAfterLogin(email);
       }
     });
   }
@@ -128,7 +126,6 @@ function renderHoldingsPiChart(portfolioData) {
     var r = Math.floor(Math.random() * 200);
     var g = Math.floor(Math.random() * 200);
     var b = Math.floor(Math.random() * 200);
-    var v = Math.floor(Math.random() * 500);
     var c = "rgb(" + r + ", " + g + ", " + b + ")";
     var h = "rgb(" + (r + 20) + ", " + (g + 20) + ", " + (b + 20) + ")";
     chartData.holdings.push(portfolioData[i].holdings);
