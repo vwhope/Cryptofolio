@@ -94,8 +94,12 @@
             <ul class="list-group list-group-flush">
               {{#each newsFeed}}
                 <li class="list-group-item">
-                  <img src="{{imageUrl}}"></img>
-                  <a href="{{link}}">{{title}}</a>
+                  <div class="news-thumb">
+                    <img src="{{imageUrl}}"></img>
+                  </div>
+                  <div class="news-content">
+                    <div class="news-title"><a href="{{link}}">{{title}}</a></div>
+                  </div>
                 </li>
               {{/each}}
             </ul>

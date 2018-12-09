@@ -8,7 +8,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/dashboard", auth.authenticate("jwtStrategy"), function(req, res) {
+  app.get("/dashboard", function(req, res) {
     utils.getNewsData(function(newsData) {
       var parsedNews = utils.parseNewsData(newsData);
       res.render("index", { newsFeed: parsedNews });

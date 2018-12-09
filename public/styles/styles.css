@@ -25,6 +25,16 @@
   margin: 0 auto;
 }
 
+#news-feed ul, #transaction-card ul  {
+  max-height: 45vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#news-feed img {
+  width: 50px;
+}
+
 #news-feed ul {
   max-height: 45vh;
   overflow: scroll;
@@ -33,6 +43,18 @@
 
 #news-feed img {
   width: 50px;
+}
+
+.news-thumb {
+  float: left;
+}
+
+.news-thumb img {
+  display: block;
+}
+
+.news-content {
+  margin-left: 70px;
 }
 
 #coin-buttons button {
