@@ -24,12 +24,20 @@
     },
     false
   );
-  isLoggedIn(function(value, email) {
-    if (value) {
-      $("#email").text(email);
-    }
-  });
 })();
+
+// Check if user is logged in and display email on top right
+$.ajax({
+  type: "GET",
+  url: "/api/isLoggedIn/",
+  success: function(data) {
+    $("#email").text(data.email);
+  },
+  error: function() {
+    console.log("user is not logged in");
+    callback(false);
+  }
+});
 
 function checkAndUpdatePassword() {
   // Grab input values
