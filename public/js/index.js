@@ -158,17 +158,29 @@ function renderRecentTransactions(transactionsData) {
   );
   for (var type in transactionsData) {
     if (transactionsData.hasOwnProperty(type)) {
-      newUl.append(
-        $("<li>")
-          .addClass("list-group-item")
-          .text(
-            transactionsData[type].type +
-              " " +
-              transactionsData[type].currency +
-              " " +
-              transactionsData[type].quantity
-          )
-      );
+      if (transactionsData[type].type === "buy") {
+        newUl.append(
+          $("<li>")
+            .addClass("list-group-item")
+            .text(
+              "Bought " +
+                transactionsData[type].currency +
+                " " +
+                transactionsData[type].quantity
+            )
+        );
+      } else {
+        newUl.append(
+          $("<li>")
+            .addClass("list-group-item")
+            .text(
+              "Sold " +
+                transactionsData[type].currency +
+                " " +
+                transactionsData[type].quantity
+            )
+        );
+      }
     }
   }
   $("#transaction-list").append(newUl);
