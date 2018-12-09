@@ -221,8 +221,12 @@ function renderAccountTotal(portfolio) {
   for (var i = 0; i < portfolio.length; i++) {
     total += parseFloat(portfolio[i].holdings) * portfolio[i].price;
   }
-  var newPTag = $("<p>")
+  var totalTitle = $("<div class='total-title'>")
+    .addClass("account-total")
+    .text("Account Total:");
+  var totalAmount = $("<div class='total'>")
     .addClass("account-total")
     .text(total.toFixed(2));
-  $(".balance-section").append(newPTag);
+  $(".balance-section").append(totalTitle);
+  $(".balance-section").append(totalAmount);
 }
