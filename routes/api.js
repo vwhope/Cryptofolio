@@ -66,13 +66,11 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/updatePassword", function(res, req) {
-    db.User.update({
-      password: req.body.password,
-      where: {
-        email: req.body.email
-      }
-    })
+  app.put("/api/updatePassword", function(req, res) {
+    db.User.update(
+      { password: req.body.password },
+      { where: { email: req.body.email } }
+    )
       .then(function(response) {
         res.status(200).json(response);
       })

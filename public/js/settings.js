@@ -47,11 +47,11 @@ function checkAndUpdatePassword() {
     );
   } else {
     // If all checks are passed, update password
-    updatePassword();
+    updatePassword(currentPassword, newPassword1);
   }
 }
 
-function updatePassword() {
+function updatePassword(currentPassword, newPassword) {
   // First make AJAX call to get user email
   $.ajax({
     type: "GET",
@@ -68,12 +68,19 @@ function updatePassword() {
   }).then(function(data) {
     console.log("ajax then:", data);
     // TODO: Call update password api
+    console.log(data);
     $.ajax({
       type: "PUT",
-      url: "/api/isLoggedIn",
-      success: function(data) {
+      url: "/api/updatePassword",
+      data: {
+        email: data.email,
+        current: currentPassword,
+        password: newPassword
+      },
+      success: function() {
         console.log("AJAX call successful.");
-        console.log("ajax success:", data);
+        console.log("ajax success: updated password");
+        $("#changeModal").modal("toggle");
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log("AJAX call failed.");
