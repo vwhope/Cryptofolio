@@ -22,10 +22,12 @@ module.exports = function(app) {
         console.log("got called");
         if (user) {
           var payload = {
+            user: user.userName,
             email: email
           };
           var token = jwt.encode(payload, cfg.jwtSecret);
           // Store & return token
+          req.session.user = user;
           req.session.email = email;
           req.session.token = token;
           res.json({ token: token });
