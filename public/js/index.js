@@ -209,6 +209,7 @@ function getSevenDayCoinPerformance(coin) {
 }
 
 function renderLineChart(chartData) {
+  $("seven-day-performance").empty();
   var sdpChartElem = document
     .getElementById("seven-day-performance")
     .getContext("2d");
