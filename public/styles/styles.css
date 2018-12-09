@@ -11,6 +11,10 @@ h5 {
   font-weight: bold;
 }
 
+#bootstrap-overrides a {
+  text-decoration: none;
+}
+
 /***** Top Navigation *****/
 #brand-logo {
   font-weight: bold;
@@ -35,7 +39,7 @@ h5 {
 /***** Main Content Area *****/
 #bootstrap-overrides #main-content-area .row {
   margin-top: 2vh;
-  min-height: 30vh;
+  /* min-height: 30vh; */
 }
 
 #bootstrap-overrides #main-content-area .card {
@@ -64,6 +68,14 @@ h5 {
 
 #portfolio-total .total-balance {
   font-weight: bold;
+}
+
+#partial-coin-snapshot {
+  width: 100%;
+}
+
+.porfolio-bottom a {
+  margin: 0 auto;
 }
 
 /***** News Feed *****/
