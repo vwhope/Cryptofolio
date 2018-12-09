@@ -12,7 +12,6 @@ var PORT = process.env.PORT || 3000;
 // Setup Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(auth.initialize());
 app.use(cookieSession({ name: "session", keys: ["token"] }));
 
 // Setup Passport
@@ -29,7 +28,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Requrie routes
+// Require routes
 require("./routes/api")(app);
 require("./routes/html")(app);
 
