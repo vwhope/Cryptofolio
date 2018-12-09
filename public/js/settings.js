@@ -24,6 +24,11 @@
     },
     false
   );
+  isLoggedIn(function(value, email) {
+    if (value) {
+      $("#email").text(email);
+    }
+  });
 })();
 
 function checkAndUpdatePassword() {
