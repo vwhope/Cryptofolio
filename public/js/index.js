@@ -55,6 +55,7 @@ function isLoggedIn(callback) {
     success: function(data) {
       console.log("user is logged in");
       console.log(data.email);
+      displayUserDropDown(data.email);
       callback(true, data.email);
     },
     error: function() {
@@ -62,6 +63,10 @@ function isLoggedIn(callback) {
       callback(false);
     }
   });
+}
+
+function displayUserDropDown(email) {
+  $("#email").text(email);
 }
 
 function displayInfoAfterLogin(user) {
