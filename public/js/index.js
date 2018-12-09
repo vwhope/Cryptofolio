@@ -78,6 +78,7 @@ function getSnapshot(user) {
     renderHoldingsPiChart(data.Portfolios);
     renderRecentTransactions(data.Transactions);
     renderThreeOrLessCoins(data.Portfolios);
+    renderAccountTotal(data.Portfolios);
   });
 }
 
@@ -128,7 +129,6 @@ function renderHoldingsPiChart(portfolioData) {
     var r = Math.floor(Math.random() * 200);
     var g = Math.floor(Math.random() * 200);
     var b = Math.floor(Math.random() * 200);
-    var v = Math.floor(Math.random() * 500);
     var c = "rgb(" + r + ", " + g + ", " + b + ")";
     var h = "rgb(" + (r + 20) + ", " + (g + 20) + ", " + (b + 20) + ")";
     chartData.holdings.push(portfolioData[i].holdings);
@@ -216,4 +216,15 @@ function renderLineChart(chartData) {
       ]
     }
   });
+}
+
+function renderAccountTotal(portfolio) {
+  var total = 0;
+  for (var i = 0; i < portfolio.length; i++) {
+    total += parseFloat(portfolio[i].holdings) * portfolio[i].price;
+  }
+  var newPTag = $("<p>")
+    .addClass("account-total")
+    .text(total.toFixed(2));
+  $(".balance-section").append(newPTag);
 }
