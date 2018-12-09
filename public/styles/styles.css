@@ -1,3 +1,22 @@
+/***** HTML Body *****/
+html {
+  font-family: 'Exo', sans-serif;  
+}
+
+body {
+  font-family: inherit;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+/***** Top Navigation *****/
+#brand-logo {
+  font-weight: bold;
+  font-size: 24px;
+}
+
 /***** Side Navigation *****/
 #left-nav {
   min-height: 100vh;
@@ -25,6 +44,29 @@
   margin: 0 auto;
 }
 
+/***** Price Chart *****/
+#coin-buttons button {
+  margin: 13px 5px 5px 5px;
+}
+
+/***** Portfolio Summary *****/
+#portfolio-total {
+  background-color: #f7f7f7;
+  border: solid 1px lightgray;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#portfolio-total .total-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#portfolio-total .total-balance {
+  font-weight: bold;
+}
+
+/***** News Feed *****/
 #news-feed ul, #transaction-card ul  {
   max-height: 45vh;
   overflow: scroll;
@@ -55,10 +97,6 @@
 
 .news-content {
   margin-left: 70px;
-}
-
-#coin-buttons button {
-  margin: 13px 5px 5px 5px;
 }
 
 /***** Signin Page *****/

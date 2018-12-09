@@ -45,7 +45,7 @@
         <div class="col-sm-6">
           <div class="card" id="price-card">
             <div class="card-header text-primary">
-              Price Chart
+              <h5>Price Chart</h5>
             </div>
             <div class="btn-toolbar" id="coin-buttons">
               <button type="button" class="btn btn-primary btn-sm active coin-button" data-button="BTC">BTC</button>
@@ -60,11 +60,13 @@
         <div class="col-sm-6">
           <div class="card" id="portfolio-card">
             <div class="card-header text-primary">
-              Portfolio
+              <h5>Portfolio Summary</h5>
             </div>
             <div class="container">
               <div class="row porfolio-pie">
                 <div class="col-md-6 balance-section">
+                  <div id="portfolio-total">
+                  </div>
                 </div> 
                 <div class="col-md-6 chart-section">
                   <canvas id="holdings-doughnut-chart" width="50" height="50"></canvas>
@@ -80,7 +82,7 @@
         <div class="col-sm-6">
           <div class="card" id="transaction-card">
             <div class="card-header text-primary">
-              Recent Transactions
+              <h5>Recent Transactions</h5>
             </div>
             <div id="transaction-list">
             </div>
@@ -89,7 +91,7 @@
         <div class="col-sm-6">
           <div class="card" id="news-feed">
             <div class="card-header text-primary">
-              Latest News
+              <h5>Latest News</h5>
             </div>
             <ul class="list-group list-group-flush">
               {{#each newsFeed}}
