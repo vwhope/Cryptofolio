@@ -36,14 +36,12 @@ function loginHandler(event) {
       url: "/api/authenticate",
       success: function() {
         console.log("AJAX call successful.");
+        displayInfoAfterLogin(email);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         // When AJAX call has failed
         console.log("AJAX call failed.");
         console.log(textStatus + ": " + errorThrown);
-      },
-      complete: function() {
-        displayInfoAfterLogin(email);
       }
     });
   }
