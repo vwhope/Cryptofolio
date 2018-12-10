@@ -19,7 +19,6 @@ module.exports = function(app) {
         }
         // If found, create jwt token and store in cookie
       }).then(function(user) {
-        console.log("got called");
         if (user) {
           var payload = {
             user: user.userName,
@@ -27,8 +26,8 @@ module.exports = function(app) {
           };
           var token = jwt.encode(payload, cfg.jwtSecret);
           // Store & return token
-          req.session.user = user;
           req.session.email = email;
+          req.session.created = created;
           req.session.token = token;
           res.json({ token: token });
         } else {
@@ -84,7 +83,11 @@ module.exports = function(app) {
     req,
     res
   ) {
-    res.status(200).json({ email: req.session.email });
+    res.status(200).json({
+      email: req.session.email,
+      userName: req.session.user.firstName + " " + req.session.user.lastName,
+      createdAt: req.session.user.createdAt
+    });
   });
 
   app.get("/api/:coin", auth.authenticate("jwtStrategy"), function(req, res) {

@@ -1,3 +1,5 @@
+{{> top-nav}}
+
 <!-- below top navigation -->
 <div class="container-fluid">
   <div class="row">
@@ -10,7 +12,7 @@
         <div class="col-sm-6">
           <div class="card">
             <div class="card-header text-primary">
-              Buy/Sell
+              <h5>Buy/Sell</h5>
             </div>
             <div>
               <form id="trade">
@@ -23,35 +25,41 @@
                   <option value="3">Ripple (XRP)</option>
                   <option value="3">XMR (Monero)</option>
                 </select>
-                {{!-- <label class="sr-only" for="quantity"></label> --}}
                 <div class="input-group mb-2 mr-sm-2">
                   <div class="input-group-prepend">
                     <div class="input-group-text">Quantity</div>
                   </div>
                   <input type="text" class="form-control" id="quantity" placeholder="12345">
                 </div>
-              
                   <button type="submit" class="btn btn-primary mb-2">Submit</button>
-            
               </form>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card">
+          <div class="card" id="portfolio-card">
             <div class="card-header text-primary">
-              Portfolio
+              <h5>Portfolio Summary</h5>
             </div>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6 balance-section">
-                </div> 
-                <div class="col-md-6 chart-section">
-                  <canvas id="holdings-doughnut-chart" width="50" height="50"></canvas>
-                </div> 
+            <div class="card-body">
+              <div class="container">
+                <div class="row porfolio-pie">
+                  <div class="col-sm-6 balance-section">
+                    <div id="portfolio-total">
+                    </div>
+                  </div> 
+                  <div class="col-sm-6 chart-section">
+                    <canvas id="holdings-doughnut-chart" width="50" height="50"></canvas>
+                  </div> 
+                </div>
+                <div class="row porfolio-coins">
+                  <div id="partial-coin-snapshot">
+                  </div>
+                </div>
+                <div class="row porfolio-bottom">
+                  <a href="#">View Account</a>
+                </div>
               </div>
-            </div>
-            <div id="partial-coin-snapshot">
             </div>
           </div>
         </div>
@@ -59,13 +67,13 @@
     </div>
   </div>
 </div>
-  <!-- scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
-  <script src="js/moment-with-locales.min.js"></script>
-  <script src="js/index.js"></script>
+<!-- scripts -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/trade.js"></script>

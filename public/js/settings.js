@@ -32,6 +32,8 @@ $.ajax({
   url: "/api/isLoggedIn/",
   success: function(data) {
     $("#email").text(data.email);
+    $("#user-name").text(data.userName);
+    $("#created-at").text(moment(data.createdAt).format("MMMM Do YYYY"));
   },
   error: function() {
     console.log("user is not logged in");
