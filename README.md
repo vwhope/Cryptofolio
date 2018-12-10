@@ -1,10 +1,9 @@
 # Cryptofolio
 
-Watch Video: [Cryptofolio Demo](http://)<br/>  
+### A simulation cryptocurrency portfolio management app
 
-Run Application: [Launch Cryptofolio ](https://.herokuapp.com/)
-
-### A simulation cryptocurrency portfolio management app 
+Run Application: [Launch Cryptofolio ](https://cryptofolio-us.herokuapp.com/)
+ 
 **Features**
 * Create/manage user-profile
 * View seven-day pricing for five cryptocurrencies
@@ -70,8 +69,8 @@ Run Application: [Launch Cryptofolio ](https://.herokuapp.com/)
 **Resource Contributors**
 * Home page background image: [Pixabay](https://pixabay.com/en/cosmos-dark-hd-wallpaper-milky-way-1853491/)
 * Home page abstract image : [Pexels](https://www.pexels.com/photo/abstract-art-blur-bright-373543/)
-* Home page coin image:[Pexels](https://www.pexels.com)
-* Home page newspaper image: [AbsolutVision on Unsplash](https://unsplash.com/search/photos/newspaper)
+* Home page coin image:[Pexels](https://www.pexels.com/photo/close-up-of-coins-315785/)
+* Home page newspaper image: [AbsolutVision on Unsplash](https://unsplash.com/photos/WYd_PkCa1BY)
 * Cryptocurrency images: [Atomic Labs](https://github.com/atomiclabs/cryptocurrency-icons)
 
 **Future Enhancement Ideas**
