@@ -1,4 +1,5 @@
 {{> top-nav}}
+
 <!-- below top navigation -->
 <div class="container-fluid">
   <div class="row">
@@ -54,7 +55,7 @@
         <div class="col-sm-12">
           <div class="card" id="price-card">
             <div class="card-header text-primary">
-              Settings
+              <h5>Settings</h5>
             </div>
             <ul id="settings-tab" class="list-unstyled">
               <ul class="nav justify-content-left">
@@ -68,11 +69,7 @@
                   <a class="nav-link disabled" href="#">Security</a>
                 </li>
               </ul>
-              {{!-- <li><a href="#">Profile</a></li>
-              <li><a href="#" class="disabled">Preferences</a></li>
-              <li><a href="#" class="disabled">Security</a></li> --}}
             </ul>
-
             <div class="card-body">
               <p>User Profile</p>
               <hr>
@@ -81,8 +78,8 @@
                   <img width="200" height="200" id="profile-image" src="https://images.coinbase.com/avatar?h=593c876979b72e08719f99zbrDd19uu%2F9EaYATIxzvbexzod0OEgjoiZdk3d%0AcSJX&amp;s=150"
                     alt="Avatar?h=593c876979b72e08719f99zbrdd19uu%2f9eayatixzvbexzod0oegjoizdk3d%0acsjx&amp;s=150">
                   <div id="profile-detail">
-                    <p>User name:</p>
-                    <p>Account created:</p>
+                    <p>User name: <span id="user-name"></span></p>
+                    <p>Account created: <span id="created-at"></span></p>
                     <a href="#change_password_modal" data-toggle="modal" data-target="#changeModal" class="btn btn-primary">Change
                       Password</a>
                   </div>
@@ -102,4 +99,5 @@
   crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
   crossorigin="anonymous"></script>
+<script src="js/vendor/moment-with-locales.min.js"></script>
 <script src="js/settings.js"></script>

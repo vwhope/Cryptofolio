@@ -1,4 +1,5 @@
 {{> top-nav}}
+
 <!-- below top navigation -->
 <div class="container-fluid">
   <div class="row">
@@ -11,7 +12,7 @@
         <div class="col-sm-6">
           <div class="card">
             <div class="card-header text-primary">
-              Buy/Sell
+              <h5>Buy/Sell</h5>
             </div>
             <div>
               <form id="trade">
@@ -24,35 +25,41 @@
                   <option value="3">Ripple (XRP)</option>
                   <option value="3">XMR (Monero)</option>
                 </select>
-                {{!-- <label class="sr-only" for="quantity"></label> --}}
                 <div class="input-group mb-2 mr-sm-2">
                   <div class="input-group-prepend">
                     <div class="input-group-text">Quantity</div>
                   </div>
                   <input type="text" class="form-control" id="quantity" placeholder="12345">
                 </div>
-              
                   <button type="submit" class="btn btn-primary mb-2">Submit</button>
-            
               </form>
             </div>
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card">
+          <div class="card" id="portfolio-card">
             <div class="card-header text-primary">
-              Portfolio
+              <h5>Portfolio Summary</h5>
             </div>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6 balance-section">
-                </div> 
-                <div class="col-md-6 chart-section">
-                  <canvas id="holdings-doughnut-chart" width="50" height="50"></canvas>
-                </div> 
+            <div class="card-body">
+              <div class="container">
+                <div class="row porfolio-pie">
+                  <div class="col-sm-6 balance-section">
+                    <div id="portfolio-total">
+                    </div>
+                  </div> 
+                  <div class="col-sm-6 chart-section">
+                    <canvas id="holdings-doughnut-chart" width="50" height="50"></canvas>
+                  </div> 
+                </div>
+                <div class="row porfolio-coins">
+                  <div id="partial-coin-snapshot">
+                  </div>
+                </div>
+                <div class="row porfolio-bottom">
+                  <a href="#">View Account</a>
+                </div>
               </div>
-            </div>
-            <div id="partial-coin-snapshot">
             </div>
           </div>
         </div>

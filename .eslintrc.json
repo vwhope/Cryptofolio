@@ -20,7 +20,7 @@
         "eqeqeq": "error",
         "no-empty-function": "error",
         "no-multi-spaces": "error",
-        "no-unused-vars": "error",
+        "no-unused-vars": "off",
         "camelcase": "error",
         "indent": [
             "error",
