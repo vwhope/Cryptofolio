@@ -1,5 +1,6 @@
 (function() {
   "use strict";
+  // Run function on load
   window.addEventListener(
     "load",
     function() {
@@ -41,8 +42,9 @@ $.ajax({
   }
 });
 
+// Validates passwords and then call updatePassword
 function checkAndUpdatePassword() {
-  // Grab input values
+  // Grabs user input values
   var currentPassword = $("#current-password").val();
   var newPassword1 = $("#new-password-1").val();
   var newPassword2 = $("#new-password-2").val();
@@ -56,6 +58,7 @@ function checkAndUpdatePassword() {
     newPassword1 === newPassword2 &&
     newPassword1 === currentPassword
   ) {
+    // Error if new password is same as current password
     clearNewPasswordInput();
     $("#error-message").html(
       "New password cannot be the same as current password"
@@ -66,14 +69,14 @@ function checkAndUpdatePassword() {
   }
 }
 
+// Function to update user password
 function updatePassword(currentPassword, newPassword) {
-  // First make AJAX call to get user email
+  // First make AJAX call to "/api/isLoggedIn" to get user email
   $.ajax({
     type: "GET",
     url: "/api/isLoggedIn",
     success: function(data) {
       console.log("AJAX call successful.");
-      console.log("ajax success:", data);
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log("AJAX call failed.");
