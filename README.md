@@ -4,10 +4,10 @@ Watch Video: [Cryptofolio Demo](http://)<br/>
 
 Run Application: [Launch Cryptofolio ](https://.herokuapp.com/)
 
-### a simulation cryptocurrency portfolio management app 
+### A simulation cryptocurrency portfolio management app 
 **Features**
 * Create/manage user-profile
-* View seven-day pricing for 5 cryptocurrencies
+* View seven-day pricing for five cryptocurrencies
 * Build portfolio (buy/sell any of five supported cryptocurrencies)
 * View buy/sell transactions
 * View latest cryptocurrency-related news
@@ -68,11 +68,11 @@ Run Application: [Launch Cryptofolio ](https://.herokuapp.com/)
 * in browser, navigate to "http://localhost:3000", you should see the Cryptocurrency application
 
 **Resource Contributors**
-* Home page background image: [pixabay](https://pixabay.com/en/cosmos-dark-hd-wallpaper-milky-way-1853491/)
-* Home page abstract image : [pexels](https://www.pexels.com/photo/abstract-art-blur-bright-373543/)
-* Home page coin image:[pexels](https://www.pexels.com)
+* Home page background image: [Pixabay](https://pixabay.com/en/cosmos-dark-hd-wallpaper-milky-way-1853491/)
+* Home page abstract image : [Pexels](https://www.pexels.com/photo/abstract-art-blur-bright-373543/)
+* Home page coin image:[Pexels](https://www.pexels.com)
 * Home page newspaper image: [AbsolutVision on Unsplash](https://unsplash.com/search/photos/newspaper)
-* Cryptocurrency images: [atomiclabs](https://github.com/atomiclabs/cryptocurrency-icons)
+* Cryptocurrency images: [Atomic Labs](https://github.com/atomiclabs/cryptocurrency-icons)
 
 **Future Enhancement Ideas**
 * Add password encryption
