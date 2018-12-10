@@ -140,7 +140,8 @@ h5 {
   max-width: 80%;
   margin: 0 auto;
 }
-#trade #coin-buttons {
+
+#bootstrap-overrides #coin-to-trade {
   margin-bottom: 10px;
 }
 

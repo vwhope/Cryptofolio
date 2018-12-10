@@ -14,24 +14,31 @@
             <div class="card-header text-primary">
               <h5>Buy/Sell</h5>
             </div>
-            <div>
+            <div class="card-body">
               <form id="trade">
-                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Coin</label>
-                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                <select class="custom-select mt-3" id="coin-to-trade">
                   <option selected>Choose...</option>
-                  <option value="1">BitCoin (BTC)</option>
-                  <option value="2">Ethereum (ETC)</option>
-                  <option value="3">LiteCoin (LTC)</option>
-                  <option value="3">Ripple (XRP)</option>
-                  <option value="3">XMR (Monero)</option>
+                  <option value="BTC">BitCoin (BTC)</option>
+                  <option value="ETH">Ethereum (ETC)</option>
+                  <option value="LTC">LiteCoin (LTC)</option>
+                  <option value="XRP">Ripple (XRP)</option>
+                  <option value="XMR">XMR (Monero)</option>
                 </select>
-                <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group mt-3">
                   <div class="input-group-prepend">
-                    <div class="input-group-text">Quantity</div>
+                    <div class="input-group-text">Qty</div>
                   </div>
-                  <input type="text" class="form-control" id="quantity" placeholder="12345">
+                  <input type="text" class="form-control " id="quantity" placeholder="12345">
                 </div>
-                  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <div class="custom-control custom-radio mt-3">
+                  <input type="radio" id="buy-radio" name="trade-radio" value="buy" class="custom-control-input">
+                  <label class="custom-control-label" for="buy-radio">Buy</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="sell-radio" name="trade-radio" value="sell" class="custom-control-input">
+                  <label class="custom-control-label" for="sell-radio">Sell</label>
+                </div>
+                  <button type="submit" class="btn btn-primary mt-3" id="submit-trade">Submit</button>
               </form>
             </div>
           </div>

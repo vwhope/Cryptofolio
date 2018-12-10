@@ -1,4 +1,5 @@
 "use strict";
+// Checks if current user is logged in
 function isLoggedIn(callback) {
   $.ajax({
     type: "GET",
@@ -13,6 +14,7 @@ function isLoggedIn(callback) {
   });
 }
 
+// Displays user email if logged in
 function displayUserDropDown(email) {
   $("#email").text(email);
 }
@@ -56,6 +58,7 @@ function renderHoldingsPiChart(portfolioData) {
   });
 }
 
+// Function to display account total
 function renderAccountTotal(portfolio) {
   var total = 0;
   for (var i = 0; i < portfolio.length; i++) {
@@ -71,6 +74,7 @@ function renderAccountTotal(portfolio) {
   $("#portfolio-total").append(totalAmount);
 }
 
+// Function to render coins
 function renderThreeOrLessCoins(portfolioData) {
   var numberOfCoinsToDisplay = 3;
   var iterator = 0;
