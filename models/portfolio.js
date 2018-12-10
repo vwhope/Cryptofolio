@@ -17,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0
     },
+    // For future use to add a stock watch feature
     own: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
