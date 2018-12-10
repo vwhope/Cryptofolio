@@ -19,7 +19,6 @@ module.exports = function(app) {
         }
         // If found, create jwt token and store in cookie
       }).then(function(user) {
-        console.log("got called");
         if (user) {
           var payload = {
             user: user.userName,
