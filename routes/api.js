@@ -27,7 +27,8 @@ module.exports = function(app) {
           var token = jwt.encode(payload, cfg.jwtSecret);
           // Store & return token
           req.session.email = email;
-          req.session.created = created;
+          //Kevin what was this for, it caused an error when I was trying to log in
+          //req.session.created = created;
           req.session.token = token;
           res.json({ token: token });
         } else {
@@ -83,10 +84,7 @@ module.exports = function(app) {
           var parsedHoldinsgsObj = JSON.parse(JSON.stringify(holdings));
           var currentHoldings = parseFloat(parsedHoldinsgsObj.holdings);
           currentHoldings += quantity;
-          utils.updateHoldings(userEmail, symbol, currentHoldings, function(
-            response
-          ) {
-            console.log(response);
+          utils.updateHoldings(userEmail, symbol, currentHoldings, function() {
             // Add transaction to database
             utils.createTransactionRecord(
               transactionType,
@@ -107,8 +105,7 @@ module.exports = function(app) {
             symbol,
             coinName,
             userEmail,
-            function(response) {
-              console.log(response);
+            function() {
               // Add transaction to database
               utils.createTransactionRecord(
                 transactionType,
@@ -191,8 +188,9 @@ module.exports = function(app) {
   ) {
     res.status(200).json({
       email: req.session.email,
-      userName: req.session.user.firstName + " " + req.session.user.lastName,
-      createdAt: req.session.user.createdAt
+      //Kevin this was causing an error too at login
+      //userName: req.session.user.firstName + " " + req.session.user.lastName,
+      //createdAt: req.session.user.createdAt
     });
   });
 
