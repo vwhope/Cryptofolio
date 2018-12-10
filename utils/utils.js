@@ -1,3 +1,5 @@
+var db = require("../models");
+
 var request = require("request");
 
 function getCoinData(coinName, callback) {
@@ -82,11 +84,111 @@ function compileInfo(dataToCompile, callback) {
   });
 }
 
+function getHoldings(userEmail, symbol, callback) {
+  db.Portfolio.findOne({
+    attributes: ["holdings"],
+    where: {
+      UserEmail: userEmail,
+      symbol: symbol
+    }
+  })
+    .then(function(holdings) {
+      callback(holdings);
+    })
+    .catch(function(error) {
+      callback(error);
+    });
+}
+
+function updateHoldings(userEmail, symbol, updatedHoldings, callback) {
+  db.Portfolio.update(
+    {
+      holdings: updatedHoldings
+    },
+    {
+      where: {
+        UserEmail: userEmail,
+        symbol: symbol
+      }
+    }
+  )
+    .then(function(response) {
+      callback(response);
+    })
+    .catch(function(error) {
+      callback(error);
+    });
+}
+
+function createTransactionRecord(
+  transactionType,
+  coinName,
+  quantity,
+  userEmail,
+  callback
+) {
+  db.Transaction.create({
+    type: transactionType,
+    currency: coinName,
+    quantity: quantity,
+    UserEmail: userEmail
+  })
+    .then(function(response) {
+      callback(response);
+    })
+    .catch(function(error) {
+      callback(error);
+    });
+}
+
+function createPortfolioEntry(
+  quantity,
+  own,
+  symbol,
+  coinName,
+  userEmail,
+  callback
+) {
+  db.Portfolio.create({
+    holdings: quantity,
+    own: own,
+    symbol: symbol,
+    coin: coinName,
+    UserEmail: userEmail
+  })
+    .then(function(response) {
+      callback(response);
+    })
+    .catch(function(error) {
+      callback(error);
+    });
+}
+
+function removeFromPortfolio(userEmail, symbol, callback) {
+  db.Portfolio.destroy({
+    where: {
+      UserEmail: userEmail,
+      symbol: symbol
+    }
+  })
+    .then(function(response) {
+      callback(response);
+    })
+    .catch(function(error) {
+      callback(error);
+    });
+}
+
 var utils = {
   getCoinData: getCoinData,
   getNewsData: getNewsData,
   parseNewsData: parseNewsData,
-  compileInfo: compileInfo
+  compileInfo: compileInfo,
+  getHoldings: getHoldings,
+  updateHoldings: updateHoldings,
+  createTransactionRecord: createTransactionRecord,
+  createPortfolioEntry: createPortfolioEntry,
+  removeFromPortfolio: removeFromPortfolio
 };
 
 module.exports = utils;

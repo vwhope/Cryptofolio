@@ -25,12 +25,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DECIMAL(10, 5),
       allowNull: false,
       defaultValue: 0.0
-    },
-    // since createdAt and updatedAt are auto created,
-    // we may not need this field - determine keep or trash
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false
     }
   });
 

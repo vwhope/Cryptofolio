@@ -43,7 +43,7 @@ $("#submit-trade").on("click", function(event) {
   // Build the payload data to send
   var tradeData = {
     email: email,
-    coin: coin,
+    symbol: coin,
     coinName: coinName,
     quantity: quantity,
     transactionType: transactionType
