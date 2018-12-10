@@ -3,6 +3,8 @@
 ### A simulation cryptocurrency portfolio management app
 
 Run Application: [Launch Cryptofolio ](https://cryptofolio-us.herokuapp.com/)
+
+**Team Members:** Vicki Hope, Kevin Luu, Alton Salmon
  
 **Features**
 * Create/manage user-profile
