@@ -59,13 +59,119 @@ module.exports = function(app) {
         }
       ]
     }).then(function(snapshotInfo) {
-      utils.compileInfo(snapshotInfo, function(compiledInfo) {
-        res.json(compiledInfo);
-      });
+      if (snapshotInfo) {
+        utils.compileInfo(snapshotInfo, function(compiledInfo) {
+          res.json(compiledInfo);
+        });
+      }
     });
   });
 
-  app.put("/api/updatePassword", function(req, res) {
+  // This route handles Transactions which can be either buying or selling
+  app.post("/api/trade", function(req, res) {
+    var transactionType = req.body.transactionType;
+    var userEmail = req.body.email;
+    var coinName = req.body.coinName;
+    var quantity = parseFloat(req.body.quantity);
+    var symbol = req.body.symbol;
+    // If a purchase is to be made
+    if (transactionType === "buy") {
+      //Check the database if user has this type of currency
+      utils.getHoldings(userEmail, symbol, function(holdings) {
+        if (holdings) {
+          // If user has this currency, update quantity
+          var parsedHoldinsgsObj = JSON.parse(JSON.stringify(holdings));
+          var currentHoldings = parseFloat(parsedHoldinsgsObj.holdings);
+          currentHoldings += quantity;
+          utils.updateHoldings(userEmail, symbol, currentHoldings, function(
+            response
+          ) {
+            console.log(response);
+            // Add transaction to database
+            utils.createTransactionRecord(
+              transactionType,
+              coinName,
+              quantity,
+              userEmail,
+              function(response) {
+                res.status(200).json(response);
+              }
+            );
+          });
+        } else {
+          // User does not have any currency of that type therefore a new entry will be
+          // created.
+          utils.createPortfolioEntry(
+            quantity,
+            true,
+            symbol,
+            coinName,
+            userEmail,
+            function(response) {
+              console.log(response);
+              // Add transaction to database
+              utils.createTransactionRecord(
+                transactionType,
+                coinName,
+                quantity,
+                userEmail,
+                function(response) {
+                  res.status(200).json(response);
+                }
+              );
+            }
+          );
+        }
+      });
+    } else if (transactionType === "sell") {
+      // Query database, check to see if the user has the item they are trying to sell
+      utils.getHoldings(userEmail, symbol, function(holdings) {
+        var parsedHoldinsgsObj = JSON.parse(JSON.stringify(holdings));
+        var currentHoldings = parseFloat(parsedHoldinsgsObj.holdings);
+        // If the quantity of the current holding is more than what user is trying to
+        // sell make no change to the database and return status and message
+        if (currentHoldings < quantity) {
+          res
+            .status(302)
+            .json({ message: "Cannot sell more items that what you hold" });
+        } else if (currentHoldings === quantity) {
+          // If the current holding is equal to the quantity of coin being sold
+          // remove the coin from the portfolio and create transaction record
+          utils.removeFromPortfolio(userEmail, symbol, function() {
+            utils.createTransactionRecord(
+              transactionType,
+              coinName,
+              quantity,
+              userEmail,
+              function(response) {
+                res.status(200).json(response);
+              }
+            );
+          });
+        } else {
+          // Else subtract the quantity from the current holding and update the portfolio and create
+          // transaction record
+          currentHoldings -= quantity;
+          utils.updateHoldings(userEmail, symbol, currentHoldings, function() {
+            utils.createTransactionRecord(
+              transactionType,
+              coinName,
+              quantity,
+              userEmail,
+              function(response) {
+                res.status(200).json(response);
+              }
+            );
+          });
+        }
+      });
+    }
+  });
+
+  app.put("/api/updatePassword", auth.authenticate("jwtStrategy"), function(
+    req,
+    res
+  ) {
     db.User.update(
       { password: req.body.password },
       { where: { email: req.body.email } }
