@@ -2,6 +2,10 @@
   $quantityElement = $("#quantity");
   $coinToTradeElement = $("#coin-to-trade");
   $totalPriceElement = $("#total-price");
+  $coinToTradeElement.on("change", function() {
+    $quantityElement.val("");
+    $totalPriceElement.text("");
+  });
   isLoggedIn(function(condition, email, userName) {
     if (condition) {
       var symbols = "BTC,LTC,ETH,XRP,XMR";
@@ -9,17 +13,19 @@
         for (var symbol in data) {
           var newTableRow = $("<tr>")
             .append($("<td>").text(getcoinNameFromSymbol(symbol)))
-            .append($("<td>").text(data[symbol].USD));
+            .append($("<td>").text("$ " + data[symbol].USD));
           $("#price-table-body").append(newTableRow);
         }
       }).then(function(pricesObj) {
-        var coin = $coinToTradeElement.val();
         $quantityElement.keyup(function() {
-          var totalPrice = parseFloat($quantityElement.val());
-          if (!isNaN(totalPrice)) {
+          var coin = $coinToTradeElement.val();
+          var quantity = parseFloat($quantityElement.val());
+          if (!isNaN(quantity)) {
             $totalPriceElement.text(
-              parseInt(totalPrice) * parseFloat(pricesObj[coin].USD)
+              "$" + (quantity * parseFloat(pricesObj[coin].USD)).toFixed(2)
             );
+          } else {
+            $totalPriceElement.text("");
           }
         });
       });
