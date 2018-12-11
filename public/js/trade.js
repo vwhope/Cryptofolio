@@ -1,47 +1,34 @@
 (function() {
-  // Event listner to listen to coin drop down option
-
-  var selectedCoin;
-  var allCoinPrices;
   $quantityElement = $("#quantity");
   $coinToTradeElement = $("#coin-to-trade");
   $totalPriceElement = $("#total-price");
-
   $coinToTradeElement.on("change", function() {
     $quantityElement.val("");
+    $totalPriceElement.text("");
   });
-
-  $quantityElement.keyup(function() {
-    displayTotal(allCoinPrices);
-  });
-
   isLoggedIn(function(condition, email, userName) {
     if (condition) {
       var symbols = "BTC,LTC,ETH,XRP,XMR";
-
       $.get("/api/getMultipleCoinPrices/" + symbols, function(data) {
         for (var symbol in data) {
           var newTableRow = $("<tr>")
             .append($("<td>").text(getcoinNameFromSymbol(symbol)))
-            .append($("<td>").text(data[symbol].USD));
+            .append($("<td>").text("$ " + data[symbol].USD));
           $("#price-table-body").append(newTableRow);
         }
       }).then(function(pricesObj) {
-        allCoinPrices = pricesObj;
-
-      
-        function displayTotal(coinPrice) {
+        $quantityElement.keyup(function() {
+          var coin = $coinToTradeElement.val();
           var quantity = parseFloat($quantityElement.val());
           if (!isNaN(quantity)) {
             $totalPriceElement.text(
-              quantity * parseFloat(coinPrice[selectedCoin].USD)
+              "$" + (quantity * parseFloat(pricesObj[coin].USD)).toFixed(2)
             );
+          } else {
+            $totalPriceElement.text("");
           }
-        }
+        });
       });
-      
-
-    
       $.get("/api/snapshot/" + email, function(data) {
         renderHoldingsPiChart(data.Portfolios);
         renderThreeOrLessCoins(data.Portfolios);

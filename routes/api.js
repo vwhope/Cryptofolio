@@ -44,6 +44,21 @@ module.exports = function(app) {
     }
   });
 
+  app.post("/api/newUser", function(req, res) {
+    db.User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password
+    })
+      .then(function(response) {
+        res.status(200).json(response);
+      })
+      .catch(function(error) {
+        res.status(302).json(error);
+      });
+  });
+
   app.get(
     "/api/getMultipleCoinPrices/:symbols",
     auth.authenticate("jwtStrategy"),
