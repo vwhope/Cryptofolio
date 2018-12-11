@@ -33,7 +33,7 @@ module.exports = function(app) {
           res.json({
             token: token,
             email: req.session.email,
-            userName: req.session.firstName + " " + req.session.lastName,
+            userName: req.session.firstName + " " + req.session.lastName
           });
         } else {
           res.status(401).send({ error: "Unauthorized" });
@@ -43,6 +43,17 @@ module.exports = function(app) {
       res.status(401).send({ error: "Unauthorized" });
     }
   });
+
+  app.get(
+    "/api/getMultipleCoinPrices/:symbols",
+    auth.authenticate("jwtStrategy"),
+    function(req, res) {
+      console.log(req.params.symbols);
+      utils.getMultipleCoinPrices(req.params.symbols, function(data) {
+        res.json(data);
+      });
+    }
+  );
 
   app.get("/api/snapshot/:email", auth.authenticate("jwtStrategy"), function(
     req,

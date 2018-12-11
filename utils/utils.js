@@ -188,7 +188,8 @@ var utils = {
   updateHoldings: updateHoldings,
   createTransactionRecord: createTransactionRecord,
   createPortfolioEntry: createPortfolioEntry,
-  removeFromPortfolio: removeFromPortfolio
+  removeFromPortfolio: removeFromPortfolio,
+  getMultipleCoinPrices: getMultipleCoinPrices
 };
 
 module.exports = utils;

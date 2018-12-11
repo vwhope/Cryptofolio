@@ -15,10 +15,21 @@
               <h5>Buy/Sell</h5>
             </div>
             <div class="card-body">
+              <div class="container">
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Coin</th>
+                      <th>Mkt Price</th>
+                    </tr>
+                  </thead>
+                  <tbody id="price-table-body">
+                  </tbody>
+                </table>
+              </div>
               <form id="trade">
                 <select class="custom-select mt-3" id="coin-to-trade">
-                  <option selected>Choose...</option>
-                  <option value="BTC">BitCoin (BTC)</option>
+                  <option value="BTC" selected>BitCoin (BTC)</option>
                   <option value="ETH">Ethereum (ETC)</option>
                   <option value="LTC">LiteCoin (LTC)</option>
                   <option value="XRP">Ripple (XRP)</option>
@@ -40,6 +51,9 @@
                 </div>
                   <button type="submit" class="btn btn-primary mt-3" id="submit-trade">Submit</button>
               </form>
+              <div id="current-coin-price" class="ml-5 mt-3">
+                  <h3>Total Price: <span id="total-price"></span></h3>
+              </div>
             </div>
           </div>
         </div>
