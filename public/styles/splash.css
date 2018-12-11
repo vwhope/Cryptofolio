@@ -109,7 +109,7 @@ html {
   /*** NAVBAR ***/
   
   .navbar {
-    background: rgba(0,0,0,0.0);
+    background: rgba(0,0,0,1.0);
     top: 0;
     z-index: 10000;
     position: fixed;
@@ -184,15 +184,7 @@ html {
   #insert-text {
     text-align: center;
   }
-  /* .card {
-    color: black;
-    width: 300px;
-  }
-  
-  .card .card-text {
-    color: black;
-  } */
-  
+    
   /*** FEATURES ***/
   
   #features-header {

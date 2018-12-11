@@ -1,12 +1,14 @@
 # Cryptofolio
 
-Watch Video: [Cryptofolio Demo](http://)
-Run Application: [Launch Cryptofolio ](https://.herokuapp.com/)
+### A simulation cryptocurrency portfolio management app
 
-### a simulation cryptocurrency portfolio management app 
+Run Application: [Launch Cryptofolio ](https://cryptofolio-us.herokuapp.com/)
+
+**Team Members:** Vicki Hope, Kevin Luu, Alton Salmon
+ 
 **Features**
 * Create/manage user-profile
-* View seven-day pricing for 5 cryptocurrencies
+* View seven-day pricing for five cryptocurrencies
 * Build portfolio (buy/sell any of five supported cryptocurrencies)
 * View buy/sell transactions
 * View latest cryptocurrency-related news
@@ -20,24 +22,24 @@ Run Application: [Launch Cryptofolio ](https://.herokuapp.com/)
 * Sequelized ORM
 * Model View Controller (MVC) design pattern
 * RESTful API design
-* chart.js
-* passport-jwt
+* Chart.js
+* Passport-jwt
 * Cryptocompare API
   
 **Problems to Solve**
-* dynamically serve content to user
-* authenticate user
-* provide persistent data storage
-* provide latest cryptocurrency pricing and news
-* chart coin pricing and portfolio coin distribution
-* control user interaction with back-end database using front-end display
-* allow for separation of concerns to improve maintainability and expandability of code
-* deploy full-stack project for others to use
+* Dynamically serve content to user
+* Authenticate user and endpoints
+* Securely and reliably store data, with scalability in mind
+* Provide latest cryptocurrency pricing and news
+* Chart coin pricing and portfolio coin distribution
+* Control user interaction with back-end database using front-end display
+* Allow for separation of concerns to improve maintainability and expandability of code
+* Deploy full-stack project for others to use
 
 **Solutions** 
 * Apply handlebars templating to dynamically update user's display
-* Implement passport-JWT for user authentication
-* Use MySQL database for persistent data storage
+* Implement passport-jwt for user/endpoint authentication
+* Use MySQL database for data storage
 * Integrate Cryptocompare API for cryptocurrency pricing and news
 * Integrate chart.js module for creating charts (line/pie)
 * Combine MySQL, Sequelized, Express and AJAX for routing and CRUD operations
@@ -52,33 +54,33 @@ Run Application: [Launch Cryptofolio ](https://.herokuapp.com/)
     DATABASE_URL="mysql://root:YourPasswordHere@localhost:3306/cryptofolio_db"
     CRYPTOCOMPAREKEY=YOUR KEY HERE - NO QUOTES
     ```
-* clone the Cryptofolio repo into a dirctory on your system
-* from command line while in that directory key: npm install
-* navigate to the directory "models"
-* to create db and load data into cryptofolio_db tables key:
+* Clone the Cryptofolio repo into a dirctory on your system
+* From command line, while in that directory key: npm install
+* Navigate to the directory "models"
+* To create db and load data into cryptofolio_db tables, key:
    ```
    mysql -u root -p < schema.sql
    mysql -u root -p < seeds.sql
    ``` 
-* navigate back to project root directory, key: 
+* Navigate back to project root directory, key: 
  ```
  node server.js
   ```
 * in browser, navigate to "http://localhost:3000", you should see the Cryptocurrency application
 
 **Resource Contributors**
-* Home page background image: [pixabay](https://pixabay.com/en/cosmos-dark-hd-wallpaper-milky-way-1853491/)
-* Home page abstract image : [pexels](https://www.pexels.com/photo/abstract-art-blur-bright-373543/)
-* Home page coin image:[pexels](https://www.pexels.com)
-* Home page newspaper image: [AbsolutVision on Unsplash](https://unsplash.com/search/photos/newspaper)
-* Cryptocurrency images: [atomiclabs](https://github.com/atomiclabs/cryptocurrency-icons)
+* Home page background image: [Pixabay](https://pixabay.com/en/cosmos-dark-hd-wallpaper-milky-way-1853491/)
+* Home page abstract image : [Pexels](https://www.pexels.com/photo/abstract-art-blur-bright-373543/)
+* Home page coin image:[Pexels](https://www.pexels.com/photo/close-up-of-coins-315785/)
+* Home page newspaper image: [AbsolutVision on Unsplash](https://unsplash.com/photos/WYd_PkCa1BY)
+* Cryptocurrency images: [Atomic Labs](https://github.com/atomiclabs/cryptocurrency-icons)
 
 **Future Enhancement Ideas**
-* add user authorization
-* add password encryption
-* add two-factor authentication
-* update UI based on enhancements/branding
-* support additional cryptocurrency
-* add additional charting features
-* add real buy/sell features
+* Add password encryption
+* Add two-factor authentication
+* Update UI based on enhancements/branding
+* Support additional cryptocurrency
+* Add additional charting features
+* Add real buy/sell features
+* Improve responsive design
 
