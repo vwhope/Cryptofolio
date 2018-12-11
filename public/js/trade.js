@@ -29,6 +29,7 @@
           }
         });
       });
+      
       $.get("/api/snapshot/" + email, function(data) {
         renderHoldingsPiChart(data.Portfolios);
         renderThreeOrLessCoins(data.Portfolios);
