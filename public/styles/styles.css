@@ -47,7 +47,6 @@ h5 {
 /***** Main Content Area *****/
 #bootstrap-overrides #main-content-area .row {
   margin-top: 2vh;
-  /* min-height: 30vh; */
 }
 
 #bootstrap-overrides #main-content-area .card {
@@ -120,6 +119,18 @@ h5 {
 }
 
 /***** Signin Page *****/
+.modal-dialog {
+  width: 40vw;
+}
+
+#submit-login-btn {
+  width: 100%;
+}
+#bootstrap-overrides #myModal form p {
+  text-align: center;
+  margin-top: 5px;
+}
+
 .modal-header, h4, .close {
   background-color: #007bff;
   color:white !important;
@@ -179,13 +190,13 @@ h5 {
 
 /***** Register *****/
 #bootstrap-overrides #register-card {
-  width: 30rem;
+  width: 25rem;
+}
+
+#register-card button {
+  width: 100%;
 }
 
 #error-message {
   color: red;
-}
-
-.modal-dialog {
-  max-width: 600px;
 }
