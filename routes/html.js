@@ -8,6 +8,10 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/register", function(req, res) {
+    res.render("register");
+  });
+
   app.get("/dashboard", function(req, res) {
     utils.getNewsData(function(newsData) {
       var parsedNews = utils.parseNewsData(newsData);

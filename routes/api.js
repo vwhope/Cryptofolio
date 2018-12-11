@@ -44,7 +44,7 @@ module.exports = function(app) {
     }
   });
 
-  app.post("/api/newUser", function(req, res) {
+  app.post("/api/register", function(req, res) {
     db.User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
