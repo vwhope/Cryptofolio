@@ -177,6 +177,11 @@ h5 {
   padding-left: 250px;
 }
 
+/***** Register *****/
+#bootstrap-overrides #register-card {
+  width: 30rem;
+}
+
 #error-message {
   color: red;
 }
