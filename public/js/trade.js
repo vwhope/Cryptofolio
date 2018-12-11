@@ -1,10 +1,11 @@
 (function() {
-  isLoggedIn(function(value, user) {
+  isLoggedIn(function(value, user, userName) {
     if (value) {
       $.get("/api/snapshot/" + user, function(data) {
         renderHoldingsPiChart(data.Portfolios);
         renderThreeOrLessCoins(data.Portfolios);
         renderAccountTotal(data.Portfolios);
+        displayUserDropDown(userName)
       });
     }
   });

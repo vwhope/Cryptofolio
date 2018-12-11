@@ -21,16 +21,20 @@ module.exports = function(app) {
       }).then(function(user) {
         if (user) {
           var payload = {
-            user: user.userName,
-            email: email
+            email: user.email
           };
           var token = jwt.encode(payload, cfg.jwtSecret);
           // Store & return token
-          req.session.email = email;
-          //Kevin what was this for, it caused an error when I was trying to log in
-          //req.session.created = created;
           req.session.token = token;
-          res.json({ token: token });
+          req.session.firstName = user.firstName;
+          req.session.lastName = user.lastName;
+          req.session.email = user.email;
+          req.session.createdAt = user.createdAt;
+          res.json({
+            token: token,
+            email: req.session.email,
+            userName: req.session.firstName + " " + req.session.lastName,
+          });
         } else {
           res.status(401).send({ error: "Unauthorized" });
         }
@@ -125,41 +129,53 @@ module.exports = function(app) {
       utils.getHoldings(userEmail, symbol, function(holdings) {
         var parsedHoldinsgsObj = JSON.parse(JSON.stringify(holdings));
         var currentHoldings = parseFloat(parsedHoldinsgsObj.holdings);
-        // If the quantity of the current holding is more than what user is trying to
-        // sell make no change to the database and return status and message
-        if (currentHoldings < quantity) {
+        // If user has the item they are trying to sell
+        if (currentHoldings) {
+          // If the quantity of the current holding is more than what user is trying to
+          // sell make no change to the database and return status and message
+          if (currentHoldings < quantity) {
+            res
+              .status(302)
+              .json({ message: "Cannot sell more items that what you hold" });
+          } else if (currentHoldings === quantity) {
+            // If the current holding is equal to the quantity of coin being sold
+            // remove the coin from the portfolio and create transaction record
+            utils.removeFromPortfolio(userEmail, symbol, function() {
+              utils.createTransactionRecord(
+                transactionType,
+                coinName,
+                quantity,
+                userEmail,
+                function(response) {
+                  res.status(200).json(response);
+                }
+              );
+            });
+          } else {
+            // Else subtract the quantity from the current holding and update the portfolio and create
+            // transaction record
+            currentHoldings -= quantity;
+            utils.updateHoldings(
+              userEmail,
+              symbol,
+              currentHoldings,
+              function() {
+                utils.createTransactionRecord(
+                  transactionType,
+                  coinName,
+                  quantity,
+                  userEmail,
+                  function(response) {
+                    res.status(200).json(response);
+                  }
+                );
+              }
+            );
+          }
+        } else {
           res
             .status(302)
-            .json({ message: "Cannot sell more items that what you hold" });
-        } else if (currentHoldings === quantity) {
-          // If the current holding is equal to the quantity of coin being sold
-          // remove the coin from the portfolio and create transaction record
-          utils.removeFromPortfolio(userEmail, symbol, function() {
-            utils.createTransactionRecord(
-              transactionType,
-              coinName,
-              quantity,
-              userEmail,
-              function(response) {
-                res.status(200).json(response);
-              }
-            );
-          });
-        } else {
-          // Else subtract the quantity from the current holding and update the portfolio and create
-          // transaction record
-          currentHoldings -= quantity;
-          utils.updateHoldings(userEmail, symbol, currentHoldings, function() {
-            utils.createTransactionRecord(
-              transactionType,
-              coinName,
-              quantity,
-              userEmail,
-              function(response) {
-                res.status(200).json(response);
-              }
-            );
-          });
+            .json({ message: "Cannot sell coin that you do not own" });
         }
       });
     }
@@ -188,9 +204,8 @@ module.exports = function(app) {
   ) {
     res.status(200).json({
       email: req.session.email,
-      //Kevin this was causing an error too at login
-      //userName: req.session.user.firstName + " " + req.session.user.lastName,
-      //createdAt: req.session.user.createdAt
+      userName: req.session.firstName + " " + req.session.lastName,
+      createdAt: req.session.createdAt
     });
   });
 
