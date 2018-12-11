@@ -1,7 +1,7 @@
 // Hide the drop down menu
 $(".navbar .btn-group").hide();
 // Attach event listner for submit
-$("#submit").on("click", function(event) {
+$("#submit").click(function(event) {
   event.preventDefault();
   var $firstName = $("#input-first-name").val();
   var $lastName = $("#input-last-name").val();
