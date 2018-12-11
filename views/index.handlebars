@@ -14,25 +14,22 @@
               <h3>Login</h3>
           </div>
           <div class="modal-body">
-            <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+            <form>
               <div class="form-group">
-                <a href="" class="float-right">New user?</a>
-                <label for="user-email">Email</label>
-                <input type="text" class="form-control form-control-lg" name="user-email" id="user-email" required="">
-                <div class="invalid-feedback">Oops, you missed this one.</div>
+                <label for="user-email">Email address</label>
+                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control form-control-lg" id="password" required="" autocomplete="new-password">
-                <div class="invalid-feedback">Enter your password too!</div>
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
               </div>
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="rememberMe">
-                <label class="custom-control-label" for="rememberMe">Remember me on this computer</label>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="remember-me">
+                <label class="form-check-label" for="remember-me">Remember me on this computer</label>
               </div>
-              <div class="form-group py-4">
-                <button type="submit" class="btn btn-primary btn-lg float-right" id="submit-login-btn">Login</button>
-              </div>
+              <button type="submit" class="btn btn-primary mt-2" id="submit-login-btn">Submit</button>
+              <div id="login-error-message">Your email or password is invalid</div>
             </form>
           </div>
         </div>
