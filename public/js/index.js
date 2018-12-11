@@ -44,6 +44,9 @@ function loginHandler(event) {
         // When AJAX call has failed
         console.log("AJAX call failed.");
         console.log(textStatus + ": " + errorThrown);
+        $("#user-email").val("");
+        $("#password").val("");
+        $("#login-error-message").css("visibility", "visible");
       }
     });
   }
