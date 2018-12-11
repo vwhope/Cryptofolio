@@ -3,13 +3,14 @@
 $(document).ready(function() {
   $(document).on("click", ".coin-button", coinButtonHandler);
   $(document).on("click", "#submit-login-btn", loginHandler);
-  isLoggedIn(function(value, email) {
+  isLoggedIn(function(value, email, userName) {
     if (!value) {
       $("#myModal").modal("show");
     } else {
       $("#myModal").modal("hide");
       $("#main-content-area").css("visibility", "visible");
       displayInfoAfterLogin(email);
+      displayUserDropDown(userName);
     }
   });
 });
@@ -34,9 +35,10 @@ function loginHandler(event) {
       type: "POST",
       data: payload,
       url: "/api/authenticate",
-      success: function() {
+      success: function(data) {
         console.log("AJAX call successful.");
-        displayInfoAfterLogin(email);
+        displayInfoAfterLogin(data.email);
+        displayUserDropDown(data.userName);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         // When AJAX call has failed

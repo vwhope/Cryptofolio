@@ -5,8 +5,7 @@ function isLoggedIn(callback) {
     type: "GET",
     url: "/api/isLoggedIn/",
     success: function(data) {
-      displayUserDropDown(data.email);
-      callback(true, data.email);
+      callback(true, data.email, data.userName);
     },
     error: function() {
       callback(false);
@@ -15,8 +14,8 @@ function isLoggedIn(callback) {
 }
 
 // Displays user email if logged in
-function displayUserDropDown(email) {
-  $("#email").text(email);
+function displayUserDropDown(userName) {
+  $("#email").text(userName);
 }
 
 function renderHoldingsPiChart(portfolioData) {

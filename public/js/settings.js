@@ -32,7 +32,7 @@ $.ajax({
   type: "GET",
   url: "/api/isLoggedIn/",
   success: function(data) {
-    $("#email").text(data.email);
+    $("#email").text(data.userName);
     $("#user-name").text(data.userName);
     $("#created-at").text(moment(data.createdAt).format("MMMM Do YYYY"));
   },
